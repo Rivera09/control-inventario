@@ -6,7 +6,7 @@ const db = async () => {
     // await mssql.connect(
     //   "URI"
     // );
-    await mssql.connect("mssql://adminUser:asd.4567@20161002921.database.windows.net/inventario?encrypt=true");
+    await mssql.connect();
     console.log("Remote DB connected");
   } catch (error) {
     console.error(error.message);
