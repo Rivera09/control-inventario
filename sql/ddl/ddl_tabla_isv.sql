@@ -1,0 +1,5 @@
+CREATE TABLE Bodega.isv
+(
+  isvId INT NOT NULL PRIMARY KEY,
+  porcentaje FLOAT NOT NULL
+)
