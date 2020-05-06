@@ -1,0 +1,5 @@
+CREATE SCHEMA Bodega
+  CREATE TABLE Bodega.ISV(
+     IsvID INT NOT NULL PRIMARY KEY,
+	 Porcentaje FLOAT NOT NULL
+	 )
