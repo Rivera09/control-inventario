@@ -19,4 +19,4 @@ REFERENCES Bodega.productos(id_productos)
 
 
  
-
+--este es un comentario
