@@ -1,28 +1,14 @@
-CREATE SCHEMA facturas
-
-CREATE TABLE facturas.Facturas (
+CREATE TABLE facturas.facturas (
    FacturaID INT NOT NULL PRIMARY KEY,
-   UsuarioID INT NOT NULL,
-   ClienteID INT NOT NULL,
-   SubTotal DOUBLE,
-   ISV DOUBLE,
-   Total DOUBLE,
-   Fecha DATE,
-   ProveedorID INT NOT NULL
+   usuarioID INT NOT NULL,
+   clienteID INT NOT NULL,
+   subTotal DOUBLE,
+   isvDOUBLE,
+   total DOUBLE,
+   fecha DATE,
+   proveedorID INT NOT NULL,
+   CONSTRAINT FK_usuarios FOREIGN KEY (usuarioID) REFERENCES facturas.usuarios(usuarioID),
+   CONSTRAINT FK_clientes FOREIGN KEY (clienteID) REFERENCES facturas.clientes(clienteID),
+   CONSTRAINT FK_proveedores FOREIGN KEY (proveedorID) REFERENCES facturas.proveedores(proveedorID)
 )
 
-
-ALTER TABLE facturas.Facturas
-ADD CONSTRAINT FK_Usuarios
-FOREIGN KEY (UsuarioID)
-REFERENCES facturas.Usuarios(UsuarioID)
-
-ALTER TABLE facturas.Facturas
-ADD CONSTRAINT FK_Clientes
-FOREIGN KEY (ClienteID)
-REFERENCES facturas.Clientes(ClienteID)
-
-ALTER TABLE facturas.Facturas
-ADD CONSTRAINT FK_Proveedores
-FOREIGN KEY (ProveedorID)
-REFERENCES facturas.Proveedores(ProveedorID)
