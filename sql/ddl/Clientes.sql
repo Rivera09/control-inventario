@@ -1,9 +1,7 @@
-CREATE SCHEMA clientes
-
-CREATE TABLE clientes.Clientes(
-  ClienteID INT NOT NULL PRIMARY KEY,
-  Nombre NVARCHAR(200),
-  Email NVARCHAR(200),
-  Balance NVARCHAR(200),
-  RTN NVARCHAR(200)
+CREATE TABLE clientes.clientes(
+  clienteID INT NOT NULL PRIMARY KEY,
+  nombre NVARCHAR(200),
+  email NVARCHAR(200),
+  balance DOUBLE,
+  rtn NVARCHAR(200)
 )
