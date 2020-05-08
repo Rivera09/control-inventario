@@ -1,11 +1,8 @@
 const express = require('express');
-
-
-const {obtenerUsuarios} = require('../modules/usuarios');
 const router = express.Router();
 
-// router.Route('/').get((req,res)=>res.send('conectado'));
+const {crearUsuario} = require('../controllers/usuarios');
 
-router.get('/',obtenerUsuarios);
+router.route('/').post(crearUsuario);
 
 module.exports = router;
