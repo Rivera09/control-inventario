@@ -9,7 +9,6 @@ app.use(express.json({extended:false}));
 conexion.authenticate().then(()=>{
   console.log("Conectado a la bd");
 },err=>{
-  console.log(process.env.DB_HOST)
   console.log("Error al conectarse a la bd");
   process.exit(1);
 })

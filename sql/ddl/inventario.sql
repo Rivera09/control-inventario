@@ -21,7 +21,7 @@ CREATE SCHEMA Clientes;
 GO
 
 CREATE TABLE Bodega.Proveedores(
-  idProveedor INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   nombre NVARCHAR(200),
   telefono NVARCHAR(8) UNIQUE,
   email NVARCHAR (100) UNIQUE
@@ -61,7 +61,7 @@ CREATE TABLE Bodega.Productos(
   nombre NVARCHAR(200) UNIQUE,
   cantidad INT,
   idCategoria INT FOREIGN KEY REFERENCES Bodega.Categorias(idCategoria),
-  idProveedor INT FOREIGN KEY REFERENCES Bodega.Proveedores(idProveedor),
+  idProveedor INT FOREIGN KEY REFERENCES Bodega.Proveedores(id),
   descripcion NVARCHAR(200),
   precioCompra FLOAT,
   precioVenta FLOAT
