@@ -1,4 +1,4 @@
-const { Sequelize,DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const conexion = require('../config/db');
 let Categorias = conexion.define('Categorias',{
     CategoryName:Sequelize.STRING,

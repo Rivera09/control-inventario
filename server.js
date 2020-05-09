@@ -18,6 +18,10 @@ conexion.authenticate().then(()=>{
 // Rutas
 const isv = require('./routes/isv');
 const usuarios = require('./routes/usuarios');
+const productos = require('./controllers/productos');
+const clientes = require('./controllers/clientes');
+const proveedores = require('./controllers/proveedores');
+const auth = require('./controllers/auth');
 
 //
 app.use('/api/isv',isv);
