@@ -28,8 +28,8 @@ CREATE TABLE Bodega.Proveedores(
 ) 
 
 
-CREATE TABLE Bodega.Isv(
-  idIsv INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+CREATE TABLE Bodega.Isvs(
+  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   porcentaje FLOAT NOT NULL
 )
 
@@ -50,17 +50,17 @@ CREATE TABLE Clientes.Clientes(
 
 
 CREATE TABLE Bodega.Categorias(
-  idCategoria INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	descripcion NVARCHAR(200) UNIQUE,
-	idIsv INT FOREIGN KEY REFERENCES Bodega.isv(idIsv)
+	idIsv INT FOREIGN KEY REFERENCES Bodega.isv(id)
 )
 
 
 CREATE TABLE Bodega.Productos(
-  idProducto INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   nombre NVARCHAR(200) UNIQUE,
   cantidad INT,
-  idCategoria INT FOREIGN KEY REFERENCES Bodega.Categorias(idCategoria),
+  idCategoria INT FOREIGN KEY REFERENCES Bodega.Categorias(id),
   idProveedor INT FOREIGN KEY REFERENCES Bodega.Proveedores(id),
   descripcion NVARCHAR(200),
   precioCompra FLOAT,
