@@ -35,7 +35,7 @@ CREATE TABLE Bodega.Isvs(
 
 
 CREATE TABLE RecursosHum.TipoUsuario (
-   idTipoUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
    descripion NVARCHAR(200) UNIQUE
 )
 
@@ -68,8 +68,8 @@ CREATE TABLE Bodega.Productos(
 )
 
 CREATE TABLE facturas.Facturas (
-   idFactura INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-   idUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.usuarios(idUsuario),
+   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   idUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.usuarios(id),
    idCliente INT NOT NULL FOREIGN KEY REFERENCES Clientes.Clientes(idCliente),
    subTotal FLOAT,
    isv FLOAT,
@@ -78,12 +78,12 @@ CREATE TABLE facturas.Facturas (
 )
 
 CREATE TABLE RecursosHum.Usuarios(
-  idUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   nombre NVARCHAR(200),
   email NVARCHAR(200) UNIQUE,
   contrasena NVARCHAR(200),
   telefono NVARCHAR(8) UNIQUE,
-  idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.TipoUsuario(idTipoUsuario), 
+  idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.TipoUsuario(id), 
   observaciones NVARCHAR(200),
   identidad NVARCHAR (13) UNIQUE
 )

@@ -32,7 +32,7 @@ exports.crearUsuario = async (
 ) => {
   try {
     await conexion.sync();
-    await Usuarios.create({
+    return await Usuarios.create({
       nombre,
       email,
       telefono,
@@ -45,3 +45,13 @@ exports.crearUsuario = async (
     throw new Error(e.message);
   }
 };
+
+exports.obtenerUsuarioPorEmail = async (email)=>{
+  try {
+    const usuario = await Usuarios.findOne({where:{email}});
+    return usuario;
+  } catch (e) {
+    console.error(e.message);
+    throw new Error(e.message);
+  }
+}
