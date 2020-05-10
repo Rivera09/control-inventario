@@ -1,7 +1,9 @@
 const Usuarios = require("../modules/Usuarios");
+const TipoUsuario = require('../modules/TipoUsuarios');
 const bcrypt = require("bcryptjs");
 const respuestaError = require("../utils/respuestaError");
 const { validationResult } = require("express-validator");
+const jwt = require('jsonwebtoken');
 
 //@route    POST api/usuarios/
 //@desc     Crear un nuevo usuario.
@@ -32,10 +34,12 @@ exports.crearUsuario = async (req, res) => {
       identidad,
       observaciones
     );
+    const tipoUsuario = TipoUsuario.obtenerDescripcion(usuario.id);
     return res.json({
       msg: "Usuario creado exitosamente",
       id: usuario.id,
       nombre: usuario.nombre,
+      tipo:tipoUsuario,
       identidad: usuario.identidad,
     });
   } catch (e) {
