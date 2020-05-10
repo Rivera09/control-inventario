@@ -14,4 +14,12 @@ exports.obtenerDescripcion=async(id)=>{
     } catch (e) {
         throw new Error(e.message);
     }
+};
+
+exports.obtenerTiposUsuario=async()=>{
+    try {
+        return await TipoUsuario.findAll();
+    } catch (e) {
+        throw new Error(e.message);
+    }
 }

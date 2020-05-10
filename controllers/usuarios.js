@@ -34,12 +34,14 @@ exports.crearUsuario = async (req, res) => {
       identidad,
       observaciones
     );
-    const tipoUsuario = TipoUsuario.obtenerDescripcion(usuario.id);
+    const tipoUsuario = await TipoUsuario.obtenerDescripcion(usuario.idTipoUsuario);
+    // console.log(tipoUsuario);
+    console.log(`--------usuario.Tip: ${usuario.idTipoUsuario}`);
     return res.json({
       msg: "Usuario creado exitosamente",
       id: usuario.id,
       nombre: usuario.nombre,
-      tipo:tipoUsuario,
+      tipo:tipoUsuario.descripcion,
       identidad: usuario.identidad,
     });
   } catch (e) {
