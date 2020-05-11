@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Usuarios = require("../modules/Usuarios");
+const TipoUsarios = require('../modules/TipoUsuarios');
 
 //@route    POST api/auth/
 //@desc     Iniciar sesión
@@ -12,11 +13,13 @@ exports.iniciarSesion = async (req, res) => {
     if (!usuario)
       return res.status(400).json({ msg: "Credenciales no válidas" });
     const coincide = await bcrypt.compare(contrasena, usuario.contrasena);
+    const tipo =await TipoUsarios.obtenerDescripcion(usuario.idTipoUsuario);
     if (!coincide)
       return res.status(400).json({ msg: "Credenciales no válidas" });
     jwt.sign(
       {
-        id: usuario.id
+        id: usuario.id,
+        tipo:tipo.descripcion
       },
       process.env.JWT_SECRET,
       {expiresIn:process.env.JWT_EXPIRES_IN},
@@ -26,7 +29,8 @@ exports.iniciarSesion = async (req, res) => {
           msg: "Login exitoso",
           token,
           id:usuario.id,
-          nombre:usuario.nombre
+          nombre:usuario.nombre,
+          tipo:tipo.descripcion
         });
       }
     );
