@@ -29,3 +29,12 @@ exports.crearProducto= async(nombre,cantidad,idCategoria,idProveedor,descripcion
         throw new Error(e.message);
     }
 }
+
+
+exports.ObtenerProductos = async () => {
+    try {
+      return await Productos.findAll();
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
