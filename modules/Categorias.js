@@ -17,3 +17,12 @@ exports.crearCategoria = ({nombre,descripcion,idIsv})=>{
         })
     })
 }
+
+
+exports.ObetnerCategorias = async () => {
+    try {
+      return await Categorias.findAll();
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
