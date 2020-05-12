@@ -8,13 +8,12 @@ let Categorias = conexion.define('Categorias',{
     timestamps:false
 });
 
-exports.crearCategoria = (descripcion,idIsv)=>{
-    conexion.sync().then(()=>{
-        Categorias.create({
-            descripcion,
-            idIsv
-        })
-    })
+exports.crearCategoria = async(descripcion,idIsv)=>{
+    try {
+        return await Categorias.create({descripcion,idIsv});
+    } catch (e) {
+        throw new Error(e.message);
+    }
 }
 
 
