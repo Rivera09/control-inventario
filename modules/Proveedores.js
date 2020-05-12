@@ -10,7 +10,10 @@ let Proveedores = conexion.define('Proveedores',{
     schema:'Bodega'
 });
 
-exports.crearProveedor = async (nombre,telefono,email) =>{
+exports.crearProveedor = async (
+    nombre,
+    telefono,
+    email) =>{
     try {
         await conexion.sync();
         return await Proveedores.create({
