@@ -23,6 +23,10 @@ exports.crearCliente = async (req, res) => {
   }
 };
 
+
+//@route    GET api/clientes/
+//@desc     Obtener cliente por rtn.
+//@access   Private
 exports.obtenerClientePorRtn = async (req, res) => {
   const rtn = req.params.rtn;
   try {
