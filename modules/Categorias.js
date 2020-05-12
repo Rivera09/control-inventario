@@ -1,17 +1,16 @@
 const { Sequelize } = require('sequelize');
 const conexion = require('../config/db');
 let Categorias = conexion.define('Categorias',{
-    CategoryName:Sequelize.STRING,
-    Description:Sequelize.STRING,
+    descripcion:Sequelize.STRING,
     idIsv:Sequelize.INTEGER
 },{
-    schema:'Bodega'
+    schema:'Bodega',
+    timestamps:false
 });
 
-exports.crearCategoria = ({nombre,descripcion,idIsv})=>{
+exports.crearCategoria = (descripcion,idIsv)=>{
     conexion.sync().then(()=>{
         Categorias.create({
-            nombre,
             descripcion,
             idIsv
         })
