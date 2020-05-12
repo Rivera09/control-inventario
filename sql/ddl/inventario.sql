@@ -34,9 +34,9 @@ CREATE TABLE Bodega.Isvs(
 )
 
 
-CREATE TABLE RecursosHum.TipoUsuario (
+CREATE TABLE RecursosHum.TipoUsuarios (
    id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-   descripion NVARCHAR(200) UNIQUE
+   descripcion NVARCHAR(200) UNIQUE
 )
 
 
@@ -83,7 +83,7 @@ CREATE TABLE RecursosHum.Usuarios(
   email NVARCHAR(200) UNIQUE,
   contrasena NVARCHAR(200),
   telefono NVARCHAR(8) UNIQUE,
-  idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.TipoUsuario(id), 
+  idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.TipoUsuarios(id), 
   observaciones NVARCHAR(200),
   identidad NVARCHAR (13) UNIQUE
 )
