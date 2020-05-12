@@ -28,3 +28,11 @@ exports.crearCliente = async (nombre, email, balance, rtn) => {
     throw new Error(e.message);
   }
 };
+
+exports.obtenerClientePorRtn=async(rtn)=>{
+  try {
+    return await Clientes.findOne({where:{rtn}});
+  } catch (e) {
+    throw new Error (e.message);
+  }
+}
