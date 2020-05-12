@@ -1,9 +1,11 @@
 const Isv = require('../modules/Isv');
 exports.crearIsv = async (req,res)=>{
-    try {
+
+    try{
         await Isv.crearIsv(req.body.porcentaje);
-        return res.send("Creado")
-    } catch (error) {
-        return res.send("Error");
+        return res.send("isv creado");
+    }
+    catch (error){
+        return res.send("error";)
     }
 }
