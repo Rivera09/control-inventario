@@ -15,7 +15,7 @@ let Productos = conexion.define('Productos',{
 
 exports.crearProducto= async(nombre,cantidad,idCategoria,idProveedor,descripcion,precioCompra,precioVenta)=>{
     try {
-        await conexion.sync();
+        //await conexion.sync();
         return await Productos.create({
             nombre,
             cantidad,
