@@ -28,6 +28,7 @@ const categorias = require('./routes/categorias');
 app.use('/api/isv',isv);
 app.use('/api/usuarios',usuarios);
 app.use('/api/auth',auth);
+app.use('/api/clientes', clientes);
 app.use('/api/tiposusuario',tipoUsuario);
 app.use('/api/categorias',categorias);
 
