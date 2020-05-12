@@ -37,13 +37,25 @@ exports.crearUsuario = async (req, res) => {
     const tipoUsuario = await TipoUsuario.obtenerDescripcion(
       usuario.idTipoUsuario
     );
-    return res.json({
-      msg: "Usuario creado exitosamente",
-      id: usuario.id,
-      nombre: usuario.nombre,
-      tipo: tipoUsuario.descripcion,
-      identidad: usuario.identidad,
-    });
+    jwt.sign(
+      {
+        id: usuario.id,
+        tipo: tipoUsuario.descripcion,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN },
+      (error, token) => {
+        if (error) throw error;
+        return res.json({
+          msg: "Usuario creado exitosamente",
+          token,
+          id: usuario.id,
+          nombre: usuario.nombre,
+          tipo: tipoUsuario.descripcion,
+          identidad: usuario.identidad,
+        });
+      }
+    );
   } catch (e) {
     console.log(e);
     return respuestaError(

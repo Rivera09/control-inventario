@@ -48,10 +48,16 @@ exports.crearUsuario = async (
 
 exports.obtenerUsuarioPorEmail = async (email)=>{
   try {
-    const usuario = await Usuarios.findOne({where:{email}});
-    return usuario;
+    return await Usuarios.findOne({where:{email}});
   } catch (e) {
-    console.error(e.message);
     throw new Error(e.message);
+  }
+}
+
+exports.obtenerUsuarioPorId=async(id)=>{
+  try {
+    return await Usuarios.findByPk(id);
+  } catch (e) {
+    throw new Error (e.message);
   }
 }
