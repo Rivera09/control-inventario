@@ -32,6 +32,8 @@ app.use('/api/productos',productos);
 app.use('/api/clientes', clientes);
 app.use('/api/tiposusuario',tipoUsuario);
 app.use('/api/categorias',categorias);
+app.use('/api/clientes', clientes);
+app.use('/api/proveedores', proveedores);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>console.log(`Servidor corriendo en el pueto ${PORT}`));

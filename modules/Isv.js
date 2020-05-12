@@ -9,8 +9,7 @@ let Isv = conexion.define('Isv',{
 
 exports.crearIsv = async (porcentaje)=>{
     try {
-        await conexion.sync();
-        await Isv.create({
+        return await Isv.create({
             porcentaje
         })
     } catch (e) {
