@@ -31,7 +31,7 @@ exports.crearProducto= async(nombre,cantidad,idCategoria,idProveedor,descripcion
 }
 
 
-exports.ObtenerProductos = async () => {
+exports.obtenerProductos = async () => {
     try {
       return await Productos.findAll();
     } catch (e) {
