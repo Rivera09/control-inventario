@@ -27,3 +27,31 @@ exports.crearProducto = async (req, res) => {
       return res.status(500).send("Error del servidor")
     }
 };
+
+
+//@route    GET api/productos/
+//@desc     Obtener producto por id.
+//@access   Private
+exports.obtenerProductoPorId = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const producto = await Productos.obtenerProductoPorId(id);
+    if (!producto)
+      return respuestaError(
+        404,
+        "No encontrado",
+        [{ msg: "No se ha encontrado producto con el id proporcionado." }],
+        res
+      );
+    return res.json(producto);
+  } catch (e) {
+    console.log(e);
+    return respuestaError(
+      500,
+      "Error del servidor",
+      [{ msg: "Error al intentar obtener datos del producto" }],
+      res
+    );
+  }
+};
+

@@ -25,8 +25,11 @@ module.exports = (req, res, next) => {
     };
     next();
   } catch (e) {
-    return respuestaError(401, "Acceso denegado", [
-      { msg: "El token no es válido." },
-    ]);
+    return respuestaError(
+      401,
+      "Acceso denegado",
+      [{ msg: "El token no es válido." }],
+      res
+    );
   }
 };
