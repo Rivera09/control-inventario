@@ -1,4 +1,4 @@
-const Cliente = require("../modules/Clientes");
+const Clientes = require("../modules/Clientes");
 const { validationResult } = require("express-validator");
 const respuestaError = require("../utils/respuestaError");
 
@@ -11,7 +11,7 @@ exports.crearCliente = async (req, res) => {
   if (!errors.isEmpty())
     return respuestaError(400, "Credenciales no válidas", errors.array(), res);
   try {
-    const cliente = await Cliente.crearCliente(nombre, email, balance, rtn);
+    const cliente = await Clientes.crearCliente(nombre, email, balance, rtn);
     return res.status(201).json({
       Mensaje: "creado exitosamente",
       id: cliente.id,
@@ -20,5 +20,28 @@ exports.crearCliente = async (req, res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).send("error de servidor");
+  }
+};
+
+exports.obtenerClientePorRtn = async (req, res) => {
+  const rtn = req.params.rtn;
+  try {
+    const cliente = await Clientes.obtenerClientePorRtn(rtn);
+    if (!cliente)
+      return respuestaError(
+        404,
+        "No encontrado",
+        [{ msg: "No se ha encontrado cliente con el rtn proporcionado." }],
+        res
+      );
+    return res.json(cliente);
+  } catch (e) {
+    console.log(e);
+    return respuestaError(
+      500,
+      "Error del servidor",
+      [{ msg: "Error al intentar obtener datos del cliente" }],
+      res
+    );
   }
 };
