@@ -1,8 +1,8 @@
 const express = require("express");
-const { ObtenerCategorias } = require("../controllers/Categorias");
+const { obtenerCategorias } = require("../controllers/Categorias");
 
 const router = express.Router();
 
-router.route("/").get(ObtenerCategorias);
+router.route("/").get(obtenerCategorias);
 
 module.exports = router;

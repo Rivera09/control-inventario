@@ -19,7 +19,7 @@ exports.crearCategoria = ({nombre,descripcion,idIsv})=>{
 }
 
 
-exports.ObtnerCategorias = async () => {
+exports.obtnerCategorias = async () => {
     try {
       return await Categorias.findAll();
     } catch (e) {

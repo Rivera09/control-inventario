@@ -1,8 +1,8 @@
 const Categorias = require("../modules/Categorias");
 const repuestaError = require("../utils/respuestaError");
-exports.ObtenerCategorias= async (req, res) => {
+exports.obtenerCategorias= async (req, res) => {
   try {
-    res.json(await Categorias.ObtnerCategorias());
+    res.json(await Categorias.obtnerCategorias());
   } catch (e) {
     console.log(e);
     return repuestaError(
