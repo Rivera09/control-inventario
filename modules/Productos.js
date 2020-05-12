@@ -27,7 +27,6 @@ exports.crearProducto = async (
   precioVenta
 ) => {
   try {
-    //await conexion.sync();
     return await Productos.create({
       nombre,
       cantidad,
@@ -37,6 +36,14 @@ exports.crearProducto = async (
       precioCompra,
       precioVenta,
     });
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.obtenerProductos = async () => {
+  try {
+    return await Productos.findAll();
   } catch (e) {
     throw new Error(e.message);
   }
