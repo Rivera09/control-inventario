@@ -1,9 +1,9 @@
 const Usuarios = require("../modules/Usuarios");
-const TipoUsuario = require("../modules/TipoUsuarios");
+const TipoUsuario = require('../modules/TipoUsuarios');
 const bcrypt = require("bcryptjs");
 const respuestaError = require("../utils/respuestaError");
 const { validationResult } = require("express-validator");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 //@route    POST api/usuarios/
 //@desc     Crear un nuevo usuario.
@@ -11,16 +11,16 @@ const jwt = require("jsonwebtoken");
 exports.crearUsuario = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty())
-    return respuestaError(400, "Credenciales no válidas", errors.array(), res);
-  const {
-    nombre,
-    email,
-    contrasena,
-    telefono,
-    idTipoUsuario,
-    identidad,
-    observaciones,
-  } = req.body;
+    return respuestaError(404, "No funciona ", errors.array(), res);
+    const {
+      nombre,
+      email,
+      contrasena,
+      telefono,
+      idTipoUsuario,
+      identidad,
+      observaciones,
+    } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
     const encriptada = await bcrypt.hash(contrasena, salt);
@@ -34,28 +34,14 @@ exports.crearUsuario = async (req, res) => {
       identidad,
       observaciones
     );
-    const tipoUsuario = await TipoUsuario.obtenerDescripcion(
-      usuario.idTipoUsuario
-    );
-    jwt.sign(
-      {
-        id: usuario.id,
-        tipo: tipoUsuario.descripcion,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN },
-      (error, token) => {
-        if (error) throw error;
-        return res.json({
-          msg: "Usuario creado exitosamente",
-          token,
-          id: usuario.id,
-          nombre: usuario.nombre,
-          tipo: tipoUsuario.descripcion,
-          identidad: usuario.identidad,
-        });
-      }
-    );
+    const tipoUsuario = TipoUsuario.obtenerDescripcion(usuario.id);
+    return res.json({
+      msg: "Usuario creado exitosamente",
+      id: usuario.id,
+      nombre: usuario.nombre,
+      tipo:tipoUsuario,
+      identidad: usuario.identidad,
+    });
   } catch (e) {
     console.log(e);
     return respuestaError(
@@ -66,3 +52,18 @@ exports.crearUsuario = async (req, res) => {
     );
   }
 };
+
+exports.obtenerUsuario = async (req, res) => {
+  try {
+    res.json(await Usuarios.obtenerUsuario());
+  } catch (e) {
+    console.log(e);
+    return repuestaError(
+      500,
+      "Error de servidor",
+      [{ msg: "Error intentando obtener los Usuarios" }],
+      res
+    );
+  }
+};
+

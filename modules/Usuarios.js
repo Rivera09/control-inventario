@@ -61,3 +61,11 @@ exports.obtenerUsuarioPorId=async(id)=>{
     throw new Error (e.message);
   }
 }
+
+exports.obtenerUsuario = async () =>{
+  try {
+    return await Usuarios.findAll();
+  } catch (e) {
+    throw new Error(e.message);
+  }  
+};
