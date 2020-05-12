@@ -2,6 +2,10 @@ const Productos = require ("../modules/Productos");
 const respuestaError = require("../utils/respuestaError");
 const { validationResult } = require("express-validator");
 
+
+//@route    POST api/productos/
+//@desc     Crear un nuevo producto.
+//@access   Private
 exports.crearProducto = async (req, res) => {
     const errors = validationResult(req);
   if (!errors.isEmpty())
