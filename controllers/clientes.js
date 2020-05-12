@@ -7,8 +7,7 @@ const{
       balance,
       rtn,
     }=req.body;
-    //console.log("------------------------------",nombre)
-
+    
    try{
        const cliente = await Cliente.crearCliente(nombre,email,balance,rtn);
        return res.status(201).json({Mensaje:"creado exitosamente", id:cliente.id, nombre:cliente.nombre})
