@@ -2,7 +2,7 @@ const express = require("express");
 
 const auth = require('../middleware/auth');
 const acceso = require('../middleware/acceso');
-const { obtenerCategorias } = require("../controllers/Categorias");
+const { obtenerCategorias } = require("../controllers/categorias");
 
 const router = express.Router();
 

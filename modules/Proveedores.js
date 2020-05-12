@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const conexion = require('../config/db');
+
 let Proveedores = conexion.define('Proveedores',{
     nombre:Sequelize.STRING,
     telefono:Sequelize.STRING,
@@ -9,7 +10,10 @@ let Proveedores = conexion.define('Proveedores',{
     schema:'Bodega'
 });
 
-exports.crearProveedor = async (nombre,telefono,email) =>{
+exports.crearProveedor = async (
+    nombre,
+    telefono,
+    email) =>{
     try {
         await conexion.sync();
         return await Proveedores.create({
@@ -21,3 +25,11 @@ exports.crearProveedor = async (nombre,telefono,email) =>{
         throw new Error(e.message);
     }
 }
+
+exports.obtenerProveedorPorEmail = async (email)=>{
+    try {
+      return await Proveedores.findOne({where:{email}});
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
