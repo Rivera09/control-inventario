@@ -10,9 +10,9 @@ GO
 
 CREATE PROCEDURE Bodega.SP_CREAR_PROVEEDOR
     @nombre NVARCHAR(100),
-    @telefono NVARCHAR(100),
+    @telefono NVARCHAR(8),
     @email NVARCHAR(100),
-    @code INT OUT,
+    @codigo INT OUT,
     @mensaje NVARCHAR(100) OUT
 AS
 BEGIN
@@ -30,7 +30,7 @@ BEGIN
     )
     IF @emailRepetido>0
     BEGIN
-        SET @code=0;
+        SET @codigo=0;
         SET @mensaje='El email ingresado ya se encuentra registrado en el sistema. Por favor, pruebe con otro.';
         RETURN 0;
     END;
@@ -44,12 +44,12 @@ BEGIN
     )
     IF @telefonoRepetido>0
     BEGIN
-        SET @code=0;
+        SET @codigo=0;
         SET @mensaje ='El número de teléfono ingresado ya se encuentra en el sistema. Por favor, pruebe con otro.';
     END;
     INSERT INTO Bodega.Proveedores
     VALUES(@nombre,@telefono,@email);
-    SET @code = 1;
-    SET @mensaje = 'Proveedor agregado correctamente.';
+    SET @codigo = 1;
+    SET @mensaje = 'Proveedor creado correctamente.';
     RETURN 0;
 END;
