@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+:root {
+  --primary-color: #2980b9;
+  --secundary-color: #00b894;
+  --font-color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+/* Utilities */
+.fw-300{
+  font-weight: 300;
+}
+
+.fw-400{
+  font-weight: 400;
+}
+.fw-700{
+  font-weight: 700;
+}
+
+/* Landing page */
+.landing {
+  background: url("./img/landing.jpg") no-repeat center center/cover;
+  height: 100vh;
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.landing-btn {
+  padding: 4px 40px;
+  background: none;
+  color: var(--font-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 1.8rem;
+  transition: 0.2s;
+  font-size: 1.2em;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 2rem !important;
+  outline: none;
+}
+
+
+.landing-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--font-color);
+}
+
+.landing-element {
+  margin-top: 1rem;
+}
+
+.landing h1 {
+  font-size: 5rem;
+}
+
+.landing p {
+  font-size: 2em;
+}
+
+/* Login */
+.login-container{
+  height: 100vh;
+  background: url('./img/landing.jpg') no-repeat center center/cover;
+}
+.user-icon{
+  color: #CAD3C8;
+  margin: 1.5rem 0;
+  font-size: 8rem;
+}
+.box{
+  width: 350px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #19191999;
+  text-align: center;
+  box-shadow: 10px 10px 8px black;
+}
+.box h1{
+  color: var(--font-color);
+  text-transform: uppercase;
+}
+
+.box input{
+  border: 2px solid var(--primary-color);
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  padding: 13px 10px;
+  width: 280px;
+  outline: none;
+  color: var(--font-color);
+  border-radius: 24px;
+  transition: .25s;
+}
+
+.box input:focus{
+  /* width: 280px; */
+  border-color: var(--secundary-color);
+}
+
+.box button{
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid var(--primary-color);
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.box button:hover{
+  background: var(--primary-color);
+}
