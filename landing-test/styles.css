@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400;700&display=swap');
+
+:root{
+    --primary-color:black;
+    --secundary-color:white;
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.landing{
+    background: url('./landing.jpg') no-repeat center center/cover;
+    height: 100vh;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+main button{
+    height: 2em;
+    width: 5em;
+    background: none;
+    color: var(--secundary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 2em;
+    transition: .2s;
+}
+
+main button:focus{
+    outline: none;
+}
+
+main button:hover{
+    background-color: var(--secundary-color);
+    color: var(--primary-color);
+}
+
+.landing-element{
+    margin-top: 2em;
+}
