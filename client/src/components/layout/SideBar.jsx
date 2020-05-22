@@ -7,22 +7,22 @@ const SideBar = () => (
       <h3 className="nombre-empleado">Donaldo Rivera</h3>
     </div>
     <div className="side-bar-buttons">
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
-      <a className="side-bar-button" href="#">
+      <a className="side-bar-button btn blue-btn" href="#">
         Botón
       </a>
     </div>

@@ -9,11 +9,12 @@ const Inventario = () => {
         <h1>Inventario</h1>
         <div className="search-container">
           <div className="search-input">
-            <input type="text" />
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder='Buscar'/>
           </div>
-          <button className="search-button">Buscar</button>
+          <button className="search-button btn green-btn">Buscar</button>
         </div>
-        <div className="inventario-options">
+        <div className="search-options">
           <div className="search-filters">
             <select name="Categoría" id="">
               <option value="" disabled selected>

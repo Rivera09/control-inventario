@@ -1,0 +1,61 @@
+/* Inventario */
+main {
+    margin-top: 20px;
+    height: 100vh;
+    padding: 0 70px;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  
+  .search-container {
+    margin-top: 20px;
+    width: 100vw;
+    display: flex;
+  }
+  .search-input {
+    width: 33%;
+    padding: 5px 5px;
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+  }
+  .search-button {
+    margin-left: 10px;
+    padding: 10px 30px;
+  }
+  .search-input input {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    width: 90%;
+  }
+  
+  .search-options{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .search-filters select{
+    color:white;
+    width: 150px;
+    background: none;
+  }
+  
+  
+  .search-filters select:first-child{
+    margin-right: 30px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .product-example {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+  }
+  
