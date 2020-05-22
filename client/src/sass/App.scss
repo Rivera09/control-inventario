@@ -16,10 +16,12 @@
 
 body {
   background-color: var(--background-color);
+  margin: 0;
   color: white;
 }
+@import './login';
 @import './utilities';
 @import './landing';
 @import './side-bar';
-@import './login';
 @import './inventario';
+@import './caja-producto';

@@ -1,5 +1,6 @@
 import React from "react";
 import SideBar from "../layout/SideBar";
+import CajaProducto from './CajaProducto';
 
 const Inventario = () => {
   return (
@@ -37,11 +38,34 @@ const Inventario = () => {
           </div>
         </div>
         <div className="grid-container">
-          <div className="product-example"></div>
-          <div className="product-example"></div>
-          <div className="product-example"></div>
-          <div className="product-example"></div>
-          <div className="product-example"></div>
+          <CajaProducto
+          id={1}
+          nombre={"Sopa"}
+          categoria={"Alimentos"}
+          cantidad={20}
+          precio={10}
+          />
+          <CajaProducto
+          id={1}
+          nombre={"Sopa"}
+          categoria={"Alimentos"}
+          cantidad={20}
+          precio={10}
+          />
+          <CajaProducto
+          id={1}
+          nombre={"Sopa"}
+          categoria={"Alimentos"}
+          cantidad={20}
+          precio={10}
+          />
+          <CajaProducto
+          id={1}
+          nombre={"Sopa"}
+          categoria={"Alimentos"}
+          cantidad={20}
+          precio={10}
+          />
         </div>
       </main>
     </div>
