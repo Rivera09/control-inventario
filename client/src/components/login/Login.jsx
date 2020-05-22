@@ -3,7 +3,7 @@ import React from 'react'
 const Login = () => {
     return (
         <div className="login-container">
-            <form className="box">
+            <form className="login-box">
                 <h1 className="fw-400">Login</h1>
                 <i className="fas fa-user user-icon"></i>
                 <input type="email" name="" placeholder="Email"/>
