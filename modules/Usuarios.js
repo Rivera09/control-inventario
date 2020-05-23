@@ -56,7 +56,7 @@ exports.obtenerUsuarioPorEmail = async (email)=>{
 
 exports.obtenerUsuarioPorId=async(id)=>{
   try {
-    return await Usuarios.findByPk(id);
+    return await Usuarios.findByPk(id,{attributes:["id","email","nombre","telefono","idTipoUsuario","identidad"]});
   } catch (e) {
     throw new Error (e.message);
   }

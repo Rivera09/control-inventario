@@ -81,3 +81,13 @@ exports.obtenerUsuario = async (req, res) => {
   }
 };
 
+exports.obtenerUsuarioPorId = async (req,res)=>{
+  const id = req.params.id;
+  try {
+    res.json(await Usuarios.obtenerUsuarioPorId(id));
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({mensaje:"Error de servidor",errores:[{mensaje:"Ocurrió un error tratando de obetner el usuario."}]})
+  }
+}
+

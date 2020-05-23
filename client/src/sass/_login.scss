@@ -18,52 +18,34 @@
     background: #19191999;
     text-align: center;
     box-shadow: 10px 10px 8px black;
-  }
-  .login-box h1 {
-    color: var(--font-color);
-    text-transform: uppercase;
-  }
-  
-  .login-box input {
-    border: 2px solid var(--primary-color);
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    padding: 13px 10px;
-    width: 280px;
-    outline: none;
-    color: var(--font-color);
-    border-radius: 20px;
-    transition: 0.25s;
-  }
-  
-  .login-box input:focus {
-    /* width: 280px; */
-    border-color: var(--secundary-color);
-  }
-  
-  .login-box button {
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid var(--primary-color);
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  
-  .login-box button:hover {
-    background: var(--primary-color);
+    input{
+      border: 2px solid var(--primary-color);
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      padding: 13px 10px;
+      width: 280px;
+      outline: none;
+      color: var(--font-color);
+      border-radius: 20px;
+      transition: 0.25s;
+      &:focus{
+        border-color: var(--secundary-color);
+      }
+    }
+    h1{
+      color: var(--font-color);
+      text-transform: uppercase;
+    }
+    button{
+      display: block;
+      margin: 20px auto;
+      padding: 14px 30px;
+    }
   }
   
   .inventario-container {
     /* background-color: var(--background-color); */
     display: flex;
   }
-  
-  

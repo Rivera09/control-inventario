@@ -1,41 +1,36 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { login } from "../../actions/login";
+import PropTypes from "prop-types";
 
-const Login = () => {
+const Login = ({ login }) => {
   const [loginData, setLoginData] = useState({
     email: "",
-    password: "",
+    contrasena: "",
   });
 
   const onChange = (e) => {
-    e.preventDefault();
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const logIn=async (e)=>{
-      e.preventDefault();
-    const config = {
-        headers:{
-            "Content-Type":"application/json"
-        }
-    }
-    const body=JSON.stringify({email,password});
-    try {
-        const res = await axios.post('/api/auth',body,config);
-        console.log(res.data);
-    } catch (e) {
-        const errors = e.response.data.errors;
-        console.log(errors);
-    }
-  }
+  const attempLogin = async () => {
+    login({ email, contrasena });
+  };
 
-  const { email, password } = loginData;
+  const { email, contrasena } = loginData;
   return (
     <div className="login-container">
-      <form className="login-box">
+      <form
+        className="login-box"
+        onSubmit={(e) => {
+          e.preventDefault();
+          attempLogin();
+        }}
+      >
         <h1 className="fw-400">Login</h1>
         <i className="fas fa-user user-icon"></i>
         <input
@@ -44,18 +39,26 @@ const Login = () => {
           placeholder="Email"
           onChange={onChange}
           value={email}
+          required
         />
         <input
           type="password"
-          name="password"
+          name="contrasena"
           placeholder="Contraseña"
           onChange={onChange}
-          value={password}
+          value={contrasena}
+          required
         />
-        <button type="submit" onSubmit={logIn}>Login</button>
+        <button type="submit" className="btn blue-btn">
+          Login
+        </button>
       </form>
     </div>
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert, login })(Login);
