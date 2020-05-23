@@ -5,7 +5,8 @@ import CajaProducto from './CajaProducto';
 const Inventario = () => {
   return (
     <div className="inventario-container">
-      <SideBar />
+      <SideBar nombre={"Jorge Rivera"}
+      modulos={["productos","ventas","facturas","personal","reportes","clientes"]}/>
       <main className="inventario-main">
         <h1>Inventario</h1>
         <div className="search-container">
@@ -18,14 +19,14 @@ const Inventario = () => {
         <div className="search-options">
           <div className="search-filters">
             <select name="Categoría" id="">
-              <option value="" disabled selected>
+              <option value="" selected>
                 Categoría
               </option>
               <option value="comestibles">Comestibles</option>
               <option value="Limpieza">Limpieza</option>
             </select>
             <select name="Orden">
-              <option value="" disabled selected>
+              <option value="" selected>
                 Ordenar por
               </option>
               <option value="Nombre">Nombre</option>
@@ -33,8 +34,8 @@ const Inventario = () => {
             </select>
           </div>
           <div className="products-options">
-            <button>Agregar producto</button>
-            <button>Agregar existente</button>
+            <button className="btn blue-btn">Agregar producto</button>
+            <button className="btn blue-btn">Agregar existente</button>
           </div>
         </div>
         <div className="grid-container">

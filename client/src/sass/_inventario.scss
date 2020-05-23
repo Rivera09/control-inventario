@@ -40,8 +40,16 @@
 .search-filters {
   select {
     color: white;
-    width: 150px;
+    width: 180px;
     background: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid var(--primary-color);
+    background-color: var(--background-color);
+    &:focus{
+      border: 2px solid var(--secundary-color);
+    }
     &:first-child {
       margin-right: 30px;
     }
@@ -52,4 +60,13 @@
     margin-top:50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.products-options{
+  button{
+    padding: 10px 30px;
+    &:first-child{
+      margin-right: 30px;
+    }
+  }
 }
