@@ -9,8 +9,12 @@ const SideBar = ({ nombre, modulos }) => (
     </div>
     <div className="side-bar-buttons">
       {modulos.map((modulo) => (
-        <Link to={`/${modulo}`} className="side-bar-button btn blue-btn">
-          {modulo}
+        <Link
+          key={modulo.key}
+          to={`/${modulo.link}`}
+          className="side-bar-button btn blue-btn"
+        >
+          {modulo.nombre}
         </Link>
       ))}
     </div>

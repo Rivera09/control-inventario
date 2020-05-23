@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/login";
 import PropTypes from "prop-types";
-
-const Login = ({ login }) => {
+import {Redirect} from 'react-router-dom'
+const Login = ({ login,isAuthenticated }) => {
+  const [attempting, setAttempting] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     contrasena: "",
@@ -18,8 +19,17 @@ const Login = ({ login }) => {
   };
 
   const attempLogin = async () => {
-    login({ email, contrasena });
+    setAttempting(true);
+    await login({ email, contrasena });
+    setAttempting(false);
   };
+
+  if(isAuthenticated){
+    if(attempting) setAttempting(false);
+    return (
+      <Redirect to="/inventario"/>
+    )
+  }
 
   const { email, contrasena } = loginData;
   return (
@@ -33,32 +43,43 @@ const Login = ({ login }) => {
       >
         <h1 className="fw-400">Login</h1>
         <i className="fas fa-user user-icon"></i>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={onChange}
-          value={email}
-          required
-        />
-        <input
-          type="password"
-          name="contrasena"
-          placeholder="Contraseña"
-          onChange={onChange}
-          value={contrasena}
-          required
-        />
-        <button type="submit" className="btn blue-btn">
-          Login
-        </button>
+        {!attempting ? (
+          <Fragment>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={onChange}
+              value={email}
+              required
+            />
+            <input
+              type="password"
+              name="contrasena"
+              placeholder="Contraseña"
+              onChange={onChange}
+              value={contrasena}
+              required
+            />
+            <button type="submit" className="btn blue-btn">
+              Login
+            </button>
+          </Fragment>
+        ) : (
+          <div className="loading-image login-loading"></div>
+        )}
       </form>
     </div>
   );
 };
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, login })(Login);
+const mapStateToProps = state => ({
+  isAuthenticated:state.login.isAuthenticated
+})
+
+export default connect(mapStateToProps, { setAlert, login })(Login);

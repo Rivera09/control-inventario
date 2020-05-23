@@ -1,51 +1,55 @@
 /* Login */
 .login-container {
-    height: 100vh;
-    background: url("../img/landing.jpg") no-repeat center center/cover;
-  }
-  .user-icon {
-    color: #cad3c8;
-    margin: 1.5rem 0;
-    font-size: 8rem;
-  }
-  .login-box {
-    width: 350px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #19191999;
+  height: 100vh;
+  background: url("../img/landing.jpg") no-repeat center center/cover;
+}
+.user-icon {
+  color: #cad3c8;
+  margin: 1.5rem 0;
+  font-size: 8rem;
+}
+.login-box {
+  width: 350px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #19191999;
+  text-align: center;
+  box-shadow: 10px 10px 8px black;
+  input {
+    border: 2px solid var(--primary-color);
+    background: none;
+    display: block;
+    margin: 20px auto;
     text-align: center;
-    box-shadow: 10px 10px 8px black;
-    input{
-      border: 2px solid var(--primary-color);
-      background: none;
-      display: block;
-      margin: 20px auto;
-      text-align: center;
-      padding: 13px 10px;
-      width: 280px;
-      outline: none;
-      color: var(--font-color);
-      border-radius: 20px;
-      transition: 0.25s;
-      &:focus{
-        border-color: var(--secundary-color);
-      }
-    }
-    h1{
-      color: var(--font-color);
-      text-transform: uppercase;
-    }
-    button{
-      display: block;
-      margin: 20px auto;
-      padding: 14px 30px;
+    padding: 13px 10px;
+    width: 280px;
+    outline: none;
+    color: var(--font-color);
+    border-radius: 20px;
+    transition: 0.25s;
+    &:focus {
+      border-color: var(--secundary-color);
     }
   }
-  
-  .inventario-container {
-    /* background-color: var(--background-color); */
-    display: flex;
+  h1 {
+    color: var(--font-color);
+    text-transform: uppercase;
   }
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 30px;
+  }
+}
+
+.inventario-container {
+  display: flex;
+}
+
+.login-loading {
+  width: 280px;
+  height: 230px;
+}
