@@ -1,30 +1,24 @@
 /* Login */
 .login-container {
-    height: 100vh;
-    background: url("../img/landing.jpg") no-repeat center center/cover;
-  }
-  .user-icon {
-    color: #cad3c8;
-    margin: 1.5rem 0;
-    font-size: 8rem;
-  }
-  .login-box {
-    width: 350px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #19191999;
-    text-align: center;
-    box-shadow: 10px 10px 8px black;
-  }
-  .login-box h1 {
-    color: var(--font-color);
-    text-transform: uppercase;
-  }
-  
-  .login-box input {
+  height: 100vh;
+  background: url("../img/landing.jpg") no-repeat center center/cover;
+}
+.user-icon {
+  color: #cad3c8;
+  margin: 1.5rem 0;
+  font-size: 8rem;
+}
+.login-box {
+  width: 350px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #19191999;
+  text-align: center;
+  box-shadow: 10px 10px 8px black;
+  input {
     border: 2px solid var(--primary-color);
     background: none;
     display: block;
@@ -36,34 +30,22 @@
     color: var(--font-color);
     border-radius: 20px;
     transition: 0.25s;
+    &:focus {
+      border-color: var(--secundary-color);
+    }
   }
-  
-  .login-box input:focus {
-    /* width: 280px; */
-    border-color: var(--secundary-color);
+  h1 {
+    color: var(--font-color);
+    text-transform: uppercase;
   }
-  
-  .login-box button {
-    background: none;
+  button {
     display: block;
     margin: 20px auto;
-    text-align: center;
-    border: 2px solid var(--primary-color);
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: 0.2s;
+    padding: 14px 30px;
   }
-  
-  .login-box button:hover {
-    background: var(--primary-color);
-  }
-  
-  .inventario-container {
-    /* background-color: var(--background-color); */
-    display: flex;
-  }
-  
-  
+}
+
+.login-loading {
+  width: 280px;
+  height: 230px;
+}

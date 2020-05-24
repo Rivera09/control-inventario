@@ -46,26 +46,36 @@ exports.crearUsuario = async (
   }
 };
 
-exports.obtenerUsuarioPorEmail = async (email)=>{
+exports.obtenerUsuarioPorEmail = async (email) => {
   try {
-    return await Usuarios.findOne({where:{email}});
+    return await Usuarios.findOne({ where: { email } });
   } catch (e) {
     throw new Error(e.message);
   }
-}
+};
 
-exports.obtenerUsuarioPorId=async(id)=>{
+exports.obtenerUsuarioPorId = async (id) => {
   try {
-    return await Usuarios.findByPk(id);
+    return await Usuarios.findByPk(id, {
+      attributes: [
+        "id",
+        "email",
+        "nombre",
+        "telefono",
+        "idTipoUsuario",
+        "identidad",
+        "observaciones",
+      ],
+    });
   } catch (e) {
-    throw new Error (e.message);
+    throw new Error(e.message);
   }
-}
+};
 
-exports.obtenerUsuario = async () =>{
+exports.obtenerUsuario = async () => {
   try {
     return await Usuarios.findAll();
   } catch (e) {
     throw new Error(e.message);
-  }  
+  }
 };

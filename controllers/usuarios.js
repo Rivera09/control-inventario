@@ -1,9 +1,9 @@
 const Usuarios = require("../modules/Usuarios");
-const TipoUsuario = require('../modules/TipoUsuarios');
+const TipoUsuarios = require("../modules/TipoUsuarios");
 const bcrypt = require("bcryptjs");
 const respuestaError = require("../utils/respuestaError");
 const { validationResult } = require("express-validator");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 //@route    POST api/usuarios/
 //@desc     Crear un nuevo usuario.
@@ -34,7 +34,7 @@ exports.crearUsuario = async (req, res) => {
       identidad,
       observaciones
     );
-    const tipoUsuario = await TipoUsuario.obtenerDescripcion(
+    const tipoUsuario = await TipoUsuarios.obtenerDescripcion(
       usuario.idTipoUsuario
     );
     jwt.sign(
@@ -47,7 +47,7 @@ exports.crearUsuario = async (req, res) => {
       (error, token) => {
         if (error) throw error;
         return res.json({
-          msg: "Usuario creado exitosamente",
+          mensaje: "Usuario creado exitosamente",
           token,
           id: usuario.id,
           nombre: usuario.nombre,
@@ -61,13 +61,13 @@ exports.crearUsuario = async (req, res) => {
     return respuestaError(
       500,
       "Error de servidor",
-      [{ msg: "Error intentando crear usuario" }],
+      [{ mensaje: "Error intentando crear usuario" }],
       res
     );
   }
 };
 
-exports.obtenerUsuario = async (req, res) => {
+exports.obtenerUsuarios = async (req, res) => {
   try {
     res.json(await Usuarios.obtenerUsuario());
   } catch (e) {
@@ -75,9 +75,42 @@ exports.obtenerUsuario = async (req, res) => {
     return repuestaError(
       500,
       "Error de servidor",
-      [{ msg: "Error intentando obtener los Usuarios" }],
+      [{ mensaje: "Error intentando obtener los Usuarios" }],
       res
     );
   }
 };
 
+exports.obtenerUsuarioPorId = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const usuario = await Usuarios.obtenerUsuarioPorId(id);
+    if (!usuario)
+      return respuestaError(
+        400,
+        "id de usuario no válido",
+        [{ mensaje: "El id especificado no es válido" }],
+        res
+      );
+    const tipoUsuario = await TipoUsuario.obtenerDescripcion(
+      usuario.idTipoUsuario
+    );
+    return res.json({
+      id: usuario.id,
+      nombre: usuario.nombre,
+      email: usuario.email,
+      telefono: usuario.telefono,
+      tipo: tipoUsuario.descripcion,
+      identidad: usuario.identidad,
+      observaciones: usuario.observaciones,
+    });
+  } catch (e) {
+    console.log(e);
+    return repuestaError(
+      500,
+      "Error de servidor",
+      [{ mensaje: "Error intentando obtener el usuario" }],
+      res
+    );
+  }
+};

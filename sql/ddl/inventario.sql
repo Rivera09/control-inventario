@@ -52,7 +52,7 @@ CREATE TABLE Clientes.Clientes(
 CREATE TABLE Bodega.Categorias(
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	descripcion NVARCHAR(200) UNIQUE,
-	idIsv INT FOREIGN KEY REFERENCES Bodega.isv(id)
+	idIsv INT FOREIGN KEY REFERENCES Bodega.Isvs(id)
 )
 
 
@@ -67,16 +67,6 @@ CREATE TABLE Bodega.Productos(
   precioVenta FLOAT
 )
 
-CREATE TABLE facturas.Facturas (
-   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-   idUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.usuarios(id),
-   idCliente INT NOT NULL FOREIGN KEY REFERENCES Clientes.Clientes(idCliente),
-   subTotal FLOAT,
-   isv FLOAT,
-   total FLOAT,
-   fecha DATE,
-)
-
 CREATE TABLE RecursosHum.Usuarios(
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   nombre NVARCHAR(200),
@@ -86,4 +76,14 @@ CREATE TABLE RecursosHum.Usuarios(
   idTipoUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.TipoUsuarios(id), 
   observaciones NVARCHAR(200),
   identidad NVARCHAR (13) UNIQUE
+)
+
+CREATE TABLE facturas.Facturas (
+   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   idUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.Usuarios(id),
+   idCliente INT NOT NULL FOREIGN KEY REFERENCES Clientes.Clientes(idCliente),
+   subTotal FLOAT,
+   isv FLOAT,
+   total FLOAT,
+   fecha DATE,
 )
