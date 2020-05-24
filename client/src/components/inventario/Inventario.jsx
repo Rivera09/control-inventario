@@ -4,7 +4,7 @@ import CajaProducto from "./CajaProducto";
 
 const Inventario = () => {
   return (
-    <div className="inventario-container">
+    <div className="side-bar-page">
       <SideBar
         nombre={"Jorge Rivera"}
         modulos={[
