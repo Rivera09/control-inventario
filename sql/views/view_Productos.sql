@@ -1,5 +1,8 @@
-
-CREATE VIEW Bodega.View_Productos
+CREATE VIEW Bodega.VIEW_OBTENER_PRODUCTOS
 AS
-    SELECT nombre, precioVenta, cantidad
-    FROM Bodega.Productos
+    SELECT
+        p.id,p.nombre, c.descripcion as categoria, p.cantidad, p.precioVenta as precio
+    FROM
+        Bodega.Productos as p
+        INNER JOIN Bodega.Categorias as c
+        on c.id=p.idCategoria

@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import SideBar from "../layout/SideBar";
-import CajaProducto from "./CajaProducto";
+import Productos from "./Productos";
+import axios from "axios";
+import Paginacion from "./Paginacion";
 
 const Inventario = () => {
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productos, setProductos] = useState([]);
+  const [productsPerPage] = useState(12);
+  const [searchValue, setSearchValue] = useState("");
+
+  useState(() => {
+    const obtenerProductos = async () => {
+      const res = await axios.get("/api/productos");
+      setProductos(res.data);
+    };
+    obtenerProductos();
+    setLoading(false);
+  }, []);
+
+  const typeSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const searchProducts = () => {
+    if (searchValue.length === 0) return;
+    const prueba = productos.filter(
+      (producto) =>
+        producto.nombre.substring(0, searchValue.length).toUpperCase() ===
+        searchValue.toUpperCase()
+    );
+    setProductos(prueba);
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = productos.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
   return (
     <div className="side-bar-page">
       <SideBar
@@ -21,9 +59,19 @@ const Inventario = () => {
         <div className="search-container">
           <div className="search-input">
             <i className="fas fa-search"></i>
-            <input type="text" placeholder="Buscar" />
+            <input
+              type="text"
+              placeholder="Buscar"
+              value={searchValue}
+              onChange={typeSearch}
+            />
           </div>
-          <button className="search-button btn green-btn">Buscar</button>
+          <button
+            className="search-button btn green-btn"
+            onClick={searchProducts}
+          >
+            Buscar
+          </button>
         </div>
         <div className="search-options">
           <div className="search-filters">
@@ -47,16 +95,21 @@ const Inventario = () => {
             <button className="btn blue-btn">Agregar existente</button>
           </div>
         </div>
-        <div className="grid-container">
-          <CajaProducto
-            key={1}
-            id={1}
-            nombre={"Sopa"}
-            categoria={"Alimentos"}
-            cantidad={20}
-            precio={10}
-          />
-        </div>
+        {!loading ? (
+          <Fragment>
+            <div className="products-container">
+              <Productos productos={currentProducts} />
+            </div>
+            <Paginacion
+              productsPerPage={productsPerPage}
+              totalProducts={productos.length}
+              paginate={setCurrentPage}
+              currentPage={currentPage}
+            />
+          </Fragment>
+        ) : (
+          <div className="loading-image products-loading"></div>
+        )}
       </main>
     </div>
   );

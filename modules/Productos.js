@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, QueryTypes } = require("sequelize");
 const conexion = require("../config/db");
 let Productos = conexion.define(
   "Productos",
@@ -43,7 +43,12 @@ exports.crearProducto = async (
 
 exports.obtenerProductos = async () => {
   try {
-    return await Productos.findAll();
+    return await conexion.query(
+      "select * from Bodega.VIEW_OBTENER_PRODUCTOS",
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
   } catch (e) {
     throw new Error(e.message);
   }

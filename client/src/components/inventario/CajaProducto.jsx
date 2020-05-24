@@ -9,8 +9,8 @@ const CajaProducto = ({ id, nombre, categoria, cantidad, precio }) => {
         <img className="img-product" alt="imagen de ejemplo" src={producto} />
         <p>{nombre}</p>
         <p>{categoria}</p>
-        <p>{cantidad}</p>
-        <p>{precio}</p>
+        <p>disponibles: {cantidad}</p>
+        <p>precio: lps.{precio}</p>
       </Link>
     </div>
   );
