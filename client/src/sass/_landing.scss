@@ -10,31 +10,22 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    a{
+      padding: 4px 40px;
+      background: none;
+      color: var(--font-color);
+      transition: 0.2s;
+      font-size: 1.2em;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 2rem !important;
+      outline: none;
+    }
+    *{
+      margin-top: 1rem;
+    }
   }
-  
-  .landing-btn {
-    padding: 4px 40px;
-    background: none;
-    color: var(--font-color);
-    border: 3px solid var(--primary-color);
-    border-radius: 1.8rem;
-    transition: 0.2s;
-    font-size: 1.2em;
-    text-decoration: none;
-    text-align: center;
-    margin-top: 2rem !important;
-    outline: none;
-  }
-  
-  .landing-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--font-color);
-  }
-  
-  .landing-element {
-    margin-top: 1rem;
-  }
-  
+    
   .landing h1 {
     font-size: 5rem;
   }

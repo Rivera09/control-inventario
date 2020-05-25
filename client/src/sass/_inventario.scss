@@ -15,7 +15,6 @@
   width: 33%;
   padding: 5px 5px;
   border: 2px solid var(--primary-color);
-  border-radius: 20px;
   input {
     margin-left: 10px;
     background: none;
@@ -42,7 +41,6 @@
     width: 180px;
     background: none;
     padding: 10px 30px;
-    border-radius: 20px;
     outline: none;
     border: 2px solid var(--primary-color);
     background-color: var(--background-color);
@@ -55,8 +53,8 @@
   }
 }
 
-.grid-container {
-  margin-top: 50px;
+.products-container {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
@@ -73,8 +71,8 @@
 
 .product-box{
   padding:15px 10px;
-  border-radius: 20px;
-  border: 1px solid var(--secundary-color);
+  // border-radius: 20px;
+  // border: 1px solid var(--secundary-color);
   transition: .25s;
   &:hover{
     background-color: var(--secundary-color);

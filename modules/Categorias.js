@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, QueryTypes } = require("sequelize");
 const conexion = require('../config/db');
 let Categorias = conexion.define('Categorias',{
     descripcion:Sequelize.STRING,
@@ -19,8 +19,13 @@ exports.crearCategoria = async(descripcion,idIsv)=>{
 
 exports.obtnerCategorias = async () => {
     try {
-      return await Categorias.findAll();
-    } catch (e) {
+        return await conexion.query(
+            "select * from Bodega.VIEW_OBTENER_CATEGORIA",
+            {
+              type: QueryTypes.SELECT,
+            }
+          );
+            } catch (e) {
       throw new Error(e.message);
     }
   };

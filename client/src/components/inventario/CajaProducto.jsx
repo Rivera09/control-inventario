@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const CajaProducto = ({ id, nombre, categoria, cantidad, precio }) => {
   return (
-    <div className="product-box">
+    <div className="product-box br">
       <Link to={`productos/${id}`}>
         <img className="img-product" alt="imagen de ejemplo" src={producto} />
         <p>{nombre}</p>

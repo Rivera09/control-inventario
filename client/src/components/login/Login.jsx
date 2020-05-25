@@ -52,6 +52,7 @@ const Login = ({ login,isAuthenticated }) => {
               onChange={onChange}
               value={email}
               required
+              className="br"
             />
             <input
               type="password"
@@ -60,8 +61,9 @@ const Login = ({ login,isAuthenticated }) => {
               onChange={onChange}
               value={contrasena}
               required
+              className="br"
             />
-            <button type="submit" className="btn blue-btn">
+            <button type="submit" className="btn blue-btn br">
               Login
             </button>
           </Fragment>

@@ -4,27 +4,22 @@
   text-align: center;
 }
 
-.side-bar-button {
-  width: 150px;
-  display: block;
-  margin: 20px auto auto auto;
-  padding: 0.5rem;
-}
-
-.side-bar > * {
-  margin-top: 50px;
-}
-.side-bar-button:hover {
-  background-color: #2980b9;
-}
-
 .side-bar {
   background-color: #19191999;
   position: sticky;
   top: 0;
   border: 1px solid black;
-  width: 20%;
+  min-width: 15%;
   height: 100vh;
+  a {
+    width: 140px;
+    display: block;
+    margin: 20px auto auto auto;
+    padding: 0.5rem;
+  }
+  & > * {
+    margin-top: 50px;
+  }
 }
 
 .date-holder {

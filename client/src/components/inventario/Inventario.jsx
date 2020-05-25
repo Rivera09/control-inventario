@@ -10,13 +10,20 @@ const Inventario = () => {
   const [productos, setProductos] = useState([]);
   const [productsPerPage] = useState(12);
   const [searchValue, setSearchValue] = useState("");
+  const [categorias,setCategorias] = useState([]);
 
   useState(() => {
+    setLoading(true);
     const obtenerProductos = async () => {
       const res = await axios.get("/api/productos");
       setProductos(res.data);
     };
+    const obtenerCategorias = async () => {
+      const res = await axios.get("/api/categorias");
+      setCategorias(res.data);
+    }
     obtenerProductos();
+    obtenerCategorias();
     setLoading(false);
   }, []);
 
@@ -57,7 +64,7 @@ const Inventario = () => {
       <main className="inventario-main">
         <h1>Inventario</h1>
         <div className="search-container">
-          <div className="search-input">
+          <div className="search-input br">
             <i className="fas fa-search"></i>
             <input
               type="text"
@@ -67,7 +74,7 @@ const Inventario = () => {
             />
           </div>
           <button
-            className="search-button btn green-btn"
+            className="search-button btn green-btn br"
             onClick={searchProducts}
           >
             Buscar
@@ -75,14 +82,15 @@ const Inventario = () => {
         </div>
         <div className="search-options">
           <div className="search-filters">
-            <select name="Categoría" id="">
+            <select name="Categoría" className="br">
               <option value="" defaultValue>
                 Categoría
               </option>
-              <option value="comestibles">Comestibles</option>
-              <option value="Limpieza">Limpieza</option>
+              {categorias.map(categoria=>(
+                <option key={categoria.id} value={categoria.categoria}>{categoria.categoria}</option>
+              ))}
             </select>
-            <select name="Orden">
+            <select name="Orden" className="br">
               <option value="" defaultValue>
                 Ordenar por
               </option>
@@ -91,15 +99,13 @@ const Inventario = () => {
             </select>
           </div>
           <div className="products-options">
-            <button className="btn blue-btn">Agregar producto</button>
-            <button className="btn blue-btn">Agregar existente</button>
+            <button className="btn blue-btn br">Agregar producto</button>
+            <button className="btn blue-btn br">Agregar existente</button>
           </div>
         </div>
         {!loading ? (
           <Fragment>
-            <div className="products-container">
-              <Productos productos={currentProducts} />
-            </div>
+            <Productos productos={currentProducts} />
             <Paginacion
               productsPerPage={productsPerPage}
               totalProducts={productos.length}

@@ -3,7 +3,7 @@ import CajaProducto from "./CajaProducto";
 
 const Productos = ({ productos }) => {
   return (
-    <div className="grid-container">
+    <div className="products-container">
       {productos.map((producto) => (
         <CajaProducto
           key={producto.id}
