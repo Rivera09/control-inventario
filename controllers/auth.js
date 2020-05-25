@@ -2,6 +2,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Usuarios = require("../modules/Usuarios");
 const TipoUsuarios = require("../modules/TipoUsuarios");
+const repuestaError = require("../utils/respuestaError");
+
 
 //@route    POST api/auth/
 //@desc     Iniciar sesión
@@ -65,18 +67,7 @@ exports.obtenerUsuarioPorToken = async (req, res) => {
         [{ mensaje: "El id especificado no es válido" }],
         res
       );
-    const tipoUsuario = await TipoUsuarios.obtenerDescripcion(
-      usuario.idTipoUsuario
-    );
-    return res.json({
-      id: usuario.id,
-      nombre: usuario.nombre,
-      email: usuario.email,
-      telefono: usuario.telefono,
-      tipo: tipoUsuario.descripcion,
-      identidad: usuario.identidad,
-      observaciones: usuario.observaciones,
-    });
+    return res.json(usuario);
   } catch (e) {
     console.log(e);
     return repuestaError(

@@ -19,11 +19,11 @@ const Paginacion = ({
           <li
             key={number}
             className={`btn ${
-              number == currentPage ? "green-btn" : "blue-btn"
+              number === currentPage ? "green-btn" : "blue-btn"
             }`}
             onClick={() => paginate(number)}
           >
-            <a>{number}</a>
+            <p>{number} </p>
           </li>
         ))}
       </ul>
