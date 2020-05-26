@@ -6,6 +6,7 @@ import Paginacion from "./Paginacion";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import setAuthToken from "../../utils/setAuthToken";
 
 const Inventario = ({ isAuthenticated, loading, user }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +21,8 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
   });
 
   useState(async () => {
+    if (localStorage.getItem("token"))
+      setAuthToken(localStorage.getItem("token"));
     const getCategories = async () => {
       const res = await axios.get("/api/categorias");
       setCategories(res.data);

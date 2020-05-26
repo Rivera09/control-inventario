@@ -10,7 +10,7 @@ const {
   obtenerProductos
 } = require("../controllers/productos");
 
-router.route('/').get(obtenerProductos);
+router.route('/').get(auth,obtenerProductos);
 
 router
   .route("/")
