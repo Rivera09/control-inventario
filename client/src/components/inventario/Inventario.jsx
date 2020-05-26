@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import SideBar from "../layout/SideBar";
 import Productos from "./Productos";
 import axios from "axios";
@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
-const Inventario = ({ isAuthenticated }) => {
-  const [loading, setLoading] = useState(true);
+const Inventario = ({ isAuthenticated, loading,user }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const [resProducts, setResProducts] = useState([]);
@@ -21,7 +20,6 @@ const Inventario = ({ isAuthenticated }) => {
   });
 
   useState(async () => {
-    setLoading(true);
     const getCategories = async () => {
       const res = await axios.get("/api/categorias");
       setCategories(res.data);
@@ -33,7 +31,6 @@ const Inventario = ({ isAuthenticated }) => {
     };
     getCategories();
     getProducts();
-    setLoading(false);
   }, []);
 
   const changeFilters = (e) => {
@@ -44,7 +41,7 @@ const Inventario = ({ isAuthenticated }) => {
   };
   const applyFilters = () => {
     setProducts(() => resProducts);
-    setCurrentPage(()=>1);
+    setCurrentPage(() => 1);
     if (filters.nameFilter !== "") {
       setProducts((prevProducts) =>
         prevProducts.filter(
@@ -86,12 +83,15 @@ const Inventario = ({ isAuthenticated }) => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  // <div className="loading-image products-loading"></div>
 
   if (!isAuthenticated && isAuthenticated !== null) return <Redirect to="/" />;
-  return (
+  return loading ? (
+    <div className="loading-image products-loading"></div>
+  ) : (
     <div className="side-bar-page">
       <SideBar
-        nombre={"Jorge Rivera"}
+        nombre={user[0].nombre}
         modulos={[
           { key: 1, nombre: "productos", link: "inventario" },
           { key: 2, nombre: "ventas", link: "ventas" },
@@ -149,19 +149,13 @@ const Inventario = ({ isAuthenticated }) => {
             <button className="btn blue-btn br">Agregar existente</button>
           </div>
         </div>
-        {!loading ? (
-          <Fragment>
-            <Productos productos={currentProducts} />
-            <Paginacion
-              productsPerPage={productsPerPage}
-              totalProducts={products.length}
-              paginate={setCurrentPage}
-              currentPage={currentPage}
-            />
-          </Fragment>
-        ) : (
-          <div className="loading-image products-loading"></div>
-        )}
+        <Productos productos={currentProducts} />
+        <Paginacion
+          productsPerPage={productsPerPage}
+          totalProducts={products.length}
+          paginate={setCurrentPage}
+          currentPage={currentPage}
+        />
       </main>
     </div>
   );
@@ -169,10 +163,13 @@ const Inventario = ({ isAuthenticated }) => {
 
 Inventario.propTypes = {
   isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProprs = (state) => ({
   isAuthenticated: state.login.isAuthenticated,
+  loading: state.login.loading,
+  user:state.login.user
 });
 
 export default connect(mapStateToProprs, {})(Inventario);
