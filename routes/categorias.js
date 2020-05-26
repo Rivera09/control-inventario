@@ -11,7 +11,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(auth, acceso("Administrador", "Gerente general"), obtenerCategorias);
+  .get(obtenerCategorias);
 router
   .route("/")
   .post(

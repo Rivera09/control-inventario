@@ -12,7 +12,7 @@ const SideBar = ({ nombre, modulos }) => (
         <Link
           key={modulo.key}
           to={`/${modulo.link}`}
-          className="side-bar-button btn blue-btn"
+          className="side-bar-button btn blue-btn br"
         >
           {modulo.nombre}
         </Link>

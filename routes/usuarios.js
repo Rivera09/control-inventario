@@ -24,7 +24,7 @@ router
     acceso("Gerente general"),
     crearUsuario
   );
-router.route("/:id").get(obtenerUsuarioPorId);
+router.route("/:id").get(auth,acceso("Administrador","Gerente general"),obtenerUsuarioPorId);
 router.route("/").get(auth, obtenerUsuarios);
 
 module.exports = router;

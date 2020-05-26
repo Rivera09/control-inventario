@@ -7,7 +7,8 @@ const { validationResult } = require("express-validator");
 //@access   Private
 exports.obtenerProductos = async (req, res) => {
   try {
-    res.json(await Productos.obtenerProductos());
+    const productos = await Productos.obtenerProductos();
+    res.json(productos);
   } catch (e) {
     console.log(e);
     return repuestaError(

@@ -92,18 +92,7 @@ exports.obtenerUsuarioPorId = async (req, res) => {
         [{ mensaje: "El id especificado no es válido" }],
         res
       );
-    const tipoUsuario = await TipoUsuario.obtenerDescripcion(
-      usuario.idTipoUsuario
-    );
-    return res.json({
-      id: usuario.id,
-      nombre: usuario.nombre,
-      email: usuario.email,
-      telefono: usuario.telefono,
-      tipo: tipoUsuario.descripcion,
-      identidad: usuario.identidad,
-      observaciones: usuario.observaciones,
-    });
+    return res.json(usuario);
   } catch (e) {
     console.log(e);
     return repuestaError(

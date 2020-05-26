@@ -7,7 +7,10 @@ const acceso = require("../middleware/acceso");
 const {
   crearProducto,
   obtenerProductoPorId,
+  obtenerProductos
 } = require("../controllers/productos");
+
+router.route('/').get(auth,obtenerProductos);
 
 router
   .route("/")

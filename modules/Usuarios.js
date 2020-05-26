@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const { Sequelize, QueryTypes } = require("sequelize");
 const conexion = require("../config/db");
 
 const Usuarios = conexion.define(
@@ -56,17 +56,12 @@ exports.obtenerUsuarioPorEmail = async (email) => {
 
 exports.obtenerUsuarioPorId = async (id) => {
   try {
-    return await Usuarios.findByPk(id, {
-      attributes: [
-        "id",
-        "email",
-        "nombre",
-        "telefono",
-        "idTipoUsuario",
-        "identidad",
-        "observaciones",
-      ],
-    });
+    return await conexion.query(
+      `select * from RecursosHum.VIEW_OBTENER_USUARIO WHERE id=${id}`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
   } catch (e) {
     throw new Error(e.message);
   }
