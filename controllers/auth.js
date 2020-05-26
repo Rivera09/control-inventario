@@ -43,10 +43,7 @@ exports.iniciarSesion = async (req, res) => {
         if (error) throw error;
         return res.status(201).json({
           msg: "Login exitoso",
-          token,
-          id: usuario.id,
-          nombre: usuario.nombre,
-          tipo: tipo.descripcion,
+          token
         });
       }
     );
@@ -67,7 +64,7 @@ exports.obtenerUsuarioPorToken = async (req, res) => {
         [{ mensaje: "El id especificado no es válido" }],
         res
       );
-    return res.json(usuario);
+    return res.json(usuario[0]);
   } catch (e) {
     console.log(e);
     return repuestaError(

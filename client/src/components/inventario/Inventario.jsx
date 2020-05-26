@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
-const Inventario = ({ isAuthenticated, loading,user }) => {
+const Inventario = ({ isAuthenticated, loading, user }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const [resProducts, setResProducts] = useState([]);
@@ -59,21 +59,19 @@ const Inventario = ({ isAuthenticated, loading,user }) => {
         )
       );
     }
-    if (filters.orderFilter !== "") {
-      switch (filters.orderFilter) {
-        case "Price1":
-          setProducts((prevProducts) =>
-            prevProducts.sort((a, b) => (a.precio < b.precio ? -1 : 1))
-          );
-          break;
-        case "Price2":
-          setProducts((prevProducts) =>
-            prevProducts.sort((a, b) => (a.precio < b.precio ? 1 : -1))
-          );
-          break;
-        default:
-          break;
-      }
+    switch (filters.orderFilter) {
+      case "Price1":
+        setProducts((prevProducts) =>
+          prevProducts.sort((a, b) => (a.precio < b.precio ? 1 : -1))
+        );
+        break;
+      case "Price2":
+        setProducts((prevProducts) =>
+          prevProducts.sort((a, b) => (a.precio < b.precio ? -1 : 1))
+        );
+        break;
+      default:
+        break;
     }
   };
 
@@ -86,12 +84,12 @@ const Inventario = ({ isAuthenticated, loading,user }) => {
   // <div className="loading-image products-loading"></div>
 
   if (!isAuthenticated && isAuthenticated !== null) return <Redirect to="/" />;
-  return loading ? (
+  return loading || user === null ? (
     <div className="loading-image products-loading"></div>
   ) : (
     <div className="side-bar-page">
       <SideBar
-        nombre={user[0].nombre}
+        nombre={user.nombre}
         modulos={[
           { key: 1, nombre: "productos", link: "inventario" },
           { key: 2, nombre: "ventas", link: "ventas" },
@@ -169,7 +167,7 @@ Inventario.propTypes = {
 const mapStateToProprs = (state) => ({
   isAuthenticated: state.login.isAuthenticated,
   loading: state.login.loading,
-  user:state.login.user
+  user: state.login.user,
 });
 
 export default connect(mapStateToProprs, {})(Inventario);
