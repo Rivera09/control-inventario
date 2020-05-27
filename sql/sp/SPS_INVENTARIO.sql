@@ -50,3 +50,87 @@ BEGIN
     SELECT 1 as success, 'El proveedor ha sido creado exitosamente.' as msg
     RETURN 0;
 END;
+-- Crear usuario
+IF EXISTS (
+SELECT *
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE SPECIFIC_SCHEMA = N'RecursosHum'
+    AND SPECIFIC_NAME = N'SP_CREAR_USUARIO'
+    AND ROUTINE_TYPE = N'PROCEDURE'
+)
+DROP PROCEDURE RecursosHum.SP_CREAR_USUARIO
+GO
+
+CREATE PROCEDURE RecursosHum.SP_CREAR_USUARIO
+    @nombre NVARCHAR(100),
+    @email NVARCHAR(100),
+    @contrasena NVARCHAR(100),
+    @telefono NVARCHAR(8),
+    @idTipoUsuario INT,
+    @obeservaciones NVARCHAR(500),
+    @identidad NVARCHAR(13)
+AS
+BEGIN
+    DECLARE
+        @emailRepetdio INT = 0,
+        @telefonoRepetido INT = 0,
+        @identidadRepetida INT = 0,
+        @tipoUsuario INT = 0;
+
+    SET @tipoUsuario = (
+        SELECT 
+            COUNT(*)
+        FROM
+            RecursosHum.TipoUsuarios as tipos
+        WHERE
+            tipos.id = @idTipoUsuario
+    );
+    IF @tipoUsuario=0
+    BEGIN
+        SELECT 0 as success, 'El tipo de usuario ingresado no existe en la base de datos.' as msg 
+        RETURN 0;
+    END;
+    SET @emailRepetdio = (
+        SELECT 
+            COUNT(*)
+        FROM
+            RecursosHum.Usuarios as usuario
+        WHERE
+            usuario.email=@email
+    )
+    IF @emailRepetdio>0
+    BEGIN
+        SELECT 0 as success, 'El email ingresado ya se encuentra registrado en el sistema. Por favor, ingrese otro.' 
+        RETURN 0;
+    END;
+    SET @telefonoRepetido = (
+        SELECT 
+            COUNT(*)
+        FROM
+            RecursosHum.Usuarios as usuario
+        WHERE
+            usuario.telefono = @telefono
+    )
+    IF @telefonoRepetido>0 
+    BEGIN
+        SELECT 0 as success, 'El número de teléfono ingresado ya se encuentra registrado en el sistema. Por favor, ingrese otro.' as msg 
+        RETURN 0;
+    END;
+    SET @identidadRepetida=(
+        SELECT
+            COUNT(*)
+        FROM
+            RecursosHum.Usuarios as usuario
+        WHERE
+            usuario.identidad = @identidad
+    )
+    IF @identidadRepetida>0
+    BEGIN
+        SELECT 0 as success,'La identidad ingresada ya se encuentra registrada en el sistema. Por favor, pruebe con otra.' as msg
+        RETURN 0;
+    END;
+    INSERT INTO RecursosHum.Usuarios
+    VALUES (@nombre,@email,@contrasena,@telefono,@idTipoUsuario,@obeservaciones,@identidad);
+    SELECT 1 as success, 'Usuario creado exitosamente' as msg
+    RETURN 0;
+END;

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
+import generateModules from "../../utils/sidebarModules";
 
 const Inventario = ({ isAuthenticated, loading, user }) => {
   const isManager = user !== null && user.tipo === "Vendedor" ? false : true;
@@ -35,38 +36,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     getCategories();
     getProducts();
   }, []);
-  const modulos = [
-    {
-      key: 1,
-      nombre: "Inicio",
-      link: "/main",
-    },
-    {
-      key: 2,
-      nombre: "Ventas",
-      link: "/main",
-    },
-    {
-      key: 3,
-      nombre: isManager ? "Facturas" : "Tus facturas",
-      link: "/facturas",
-    },
-    { key: 4, nombre: "Clientes", link: "clientes" },
-    isManager
-      ? {
-          key: 5,
-          nombre: "Personal",
-          link: "/usuarios",
-        }
-      : null,
-    isManager
-      ? {
-          key: 6,
-          nombre: "Proveedores",
-          link: "/proveedores",
-        }
-      : null,
-  ];
 
   const changeFilters = (e) => {
     setFilters({
@@ -121,7 +90,7 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     <div className="loading-image page-loading"></div>
   ) : (
     <div className="side-bar-page">
-      <SideBar nombre={user.nombre} modulos={modulos} />
+      <SideBar nombre={user.nombre} modulos={generateModules(isManager, 1)} />
       <main className="inventario-main">
         <h1>Inventario</h1>
         <div className="search-container">

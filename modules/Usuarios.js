@@ -31,16 +31,10 @@ exports.crearUsuario = async (
   observaciones
 ) => {
   try {
-    await conexion.sync();
-    return await Usuarios.create({
-      nombre,
-      email,
-      telefono,
-      idTipoUsuario,
-      contrasena,
-      identidad,
-      observaciones,
-    });
+    const [results] = await conexion.query(
+      `EXECUTE RecursosHum.SP_CREAR_USUARIO '${nombre}','${email}','${contrasena}','${telefono}',${idTipoUsuario},'${observaciones}','${identidad}'`
+    );
+    return results[0];
   } catch (e) {
     throw new Error(e.message);
   }

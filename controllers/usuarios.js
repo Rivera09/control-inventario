@@ -1,9 +1,7 @@
 const Usuarios = require("../modules/Usuarios");
-const TipoUsuarios = require("../modules/TipoUsuarios");
 const bcrypt = require("bcryptjs");
 const respuestaError = require("../utils/respuestaError");
 const { validationResult } = require("express-validator");
-const jwt = require("jsonwebtoken");
 
 //@route    POST api/usuarios/
 //@desc     Crear un nuevo usuario.
@@ -25,7 +23,7 @@ exports.crearUsuario = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const encriptada = await bcrypt.hash(contrasena, salt);
 
-    const usuario = await Usuarios.crearUsuario(
+    const { success, msg } = await Usuarios.crearUsuario(
       nombre,
       email,
       encriptada,
@@ -34,28 +32,8 @@ exports.crearUsuario = async (req, res) => {
       identidad,
       observaciones
     );
-    const tipoUsuario = await TipoUsuarios.obtenerDescripcion(
-      usuario.idTipoUsuario
-    );
-    jwt.sign(
-      {
-        id: usuario.id,
-        tipo: tipoUsuario.descripcion,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN },
-      (error, token) => {
-        if (error) throw error;
-        return res.json({
-          mensaje: "Usuario creado exitosamente",
-          token,
-          id: usuario.id,
-          nombre: usuario.nombre,
-          tipo: tipoUsuario.descripcion,
-          identidad: usuario.identidad,
-        });
-      }
-    );
+    if (success === 1) return res.status(201).json({ msg });
+    return respuestaError(400, "Valores no válidos.", [{ msg }], res);
   } catch (e) {
     console.log(e);
     return respuestaError(

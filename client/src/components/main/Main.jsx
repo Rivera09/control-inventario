@@ -32,7 +32,7 @@ const Main = ({ isAuthenticated, loading, user,logout }) => {
           key: 5,
           nombre: "Personal",
           icono: "far fa-address-card",
-          link: "/usuarios",
+          link: "/usuarios/crearusuario",
         }
       : null,
     isManager

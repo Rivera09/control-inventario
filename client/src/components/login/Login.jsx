@@ -63,7 +63,7 @@ const Login = ({ login,isAuthenticated }) => {
               required
               className="br"
             />
-            <button type="submit" className="btn blue-btn br">
+            <button type="submit" className="btn green-btn br">
               Login
             </button>
           </Fragment>
