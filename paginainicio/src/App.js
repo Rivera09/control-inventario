@@ -9,10 +9,7 @@ function App () {
   return( 
     <div>
       <Inicio/>
-      
-      <Icons/>
-     
-      
+      <Icons/> 
     </div>    
   );
 }

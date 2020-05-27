@@ -16,15 +16,15 @@ body{
   font-variant:"outlined";
   position: absolute;
   left: 26%;
-
-  
+}
+.btn{
+  background-color: rgb(159, 172, 136);
 }
 .icono{
   font-size: 500%;
   width: 75px;
   height: 80px;
   color: blue($color: #000000);
-
 }
 
 .boton2{
@@ -107,6 +107,7 @@ body{
     position: absolute;
     left: 38%;
     border-radius: 18px;
+    
    }
    .boton8{
     font-size: 2900%;
@@ -114,6 +115,10 @@ body{
     position: absolute;
     left: 55%;
     border-radius: 18px;
+   }
+   .btn2{
+     border-color: rgb(159, 172, 136);
+     padding: 10px 20px;
    }
         
       

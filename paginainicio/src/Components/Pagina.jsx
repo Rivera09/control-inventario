@@ -5,7 +5,7 @@ const Inicio = () => {
    return( 
        <div className="fondo">
            <h1 className="title1">INVENTARIO</h1>
-           <h4 className="title">Nombre Empleado</h4> 
+           <h4 className="title"> Empleado: Jordan</h4> 
        </div> 
    );
 };

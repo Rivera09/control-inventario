@@ -7,7 +7,6 @@ import {faFileAlt} from '@fortawesome/free-solid-svg-icons';
 import {faUserCheck} from '@fortawesome/free-solid-svg-icons';
 import {faDownload} from '@fortawesome/free-solid-svg-icons';
 import {faUserFriends} from '@fortawesome/free-solid-svg-icons';
-import {Button} from '@material-ui/core/Button';
 
 const Icons = () => {
     return( 
@@ -15,7 +14,7 @@ const Icons = () => {
      <div>
 
         <div className="boton"> 
-          <button title="Productos" onClick={}>
+          <button className="btn" title="Productos" onClick={()=>{alert("Lista de Productos")}}>
               <div className="icono">
                  <FontAwesomeIcon icon={faClipboardList}/>
               </div>
@@ -23,7 +22,7 @@ const Icons = () => {
         </div>
 
         <div className="boton2"> 
-          <button title="Ventas y Cotizaciones" onClick={}>
+          <button className="btn" title="Ventas y Cotizaciones" onClick={()=>{alert("Inventario de ventas y cotizaciones realizadas")}}>
               <div className="icono2">
                  <FontAwesomeIcon icon={faCartArrowDown}/>
                </div>
@@ -31,7 +30,7 @@ const Icons = () => {
         </div>
 
         <div className="boton3"> 
-            <button title="Facturas" onClick={}>
+            <button className="btn" title="Facturas" onClick={()=>{alert("Lista de Facturas de")}}>
               <div className="icono3">
                  <FontAwesomeIcon icon={faFileAlt}/>
               </div>
@@ -39,7 +38,7 @@ const Icons = () => {
         </div>
 
         <div className="boton4"> 
-            <button title="Personal" onClick={}>
+            <button className="btn" title="Personal" onClick={()=>{alert("Personal del inventario")}}>
                 <div className="icono4">
                   <FontAwesomeIcon icon={faUserCheck}/>
                 </div>
@@ -47,7 +46,7 @@ const Icons = () => {
         </div>
 
         <div className="boton5"> 
-            <button title="Reportes"> onClick={}
+            <button className="btn" title="Reportes" onClick={()=>{alert("Reportes de los inventarios")}}>
               <div className="icono5">
                  <FontAwesomeIcon icon={faDownload}/>
                 </div>  
@@ -55,7 +54,7 @@ const Icons = () => {
         </div>
 
         <div className="boton6"> 
-            <button title="Clientes"onClick={}>
+            <button className="btn" title="Clientes" onClick={()=>{alert("Lista de clientes")}}>
                <div className="icono6">
                   <FontAwesomeIcon icon={faUserFriends}/>
                 </div>  
@@ -63,18 +62,19 @@ const Icons = () => {
         </div>
 
         <div className="boton7"> 
-            <button onClick={}>
+            <button className=" btn2" onClick={()=>{alert("Realizar configuraciones")}}>
                 Configuracion 
             </button>
         </div>
 
         <div className="boton8"> 
-            <button onClick={}>
+            <button className=" btn2" onClick={()=>{alert("Cerrando Sesion")}}>
                 Cerrar Sesion
             </button>
         </div>
      </div>
     );
+    
  };
  
  export default Icons;
