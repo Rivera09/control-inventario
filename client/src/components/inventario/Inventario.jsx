@@ -84,11 +84,9 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-  // <div className="loading-image products-loading"></div>
-
   if (!isAuthenticated && isAuthenticated !== null) return <Redirect to="/" />;
   return loading || user === null ? (
-    <div className="loading-image products-loading"></div>
+    <div className="loading-image page-loading"></div>
   ) : (
     <div className="side-bar-page">
       <SideBar
@@ -165,6 +163,7 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
 Inventario.propTypes = {
   isAuthenticated: PropTypes.bool,
   loading: PropTypes.bool,
+  user: PropTypes.object,
 };
 
 const mapStateToProprs = (state) => ({

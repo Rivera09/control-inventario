@@ -9,9 +9,9 @@ router
   .route("/")
   .post(
     [
-      check("nombre").exists(),
-      check("email").isEmail(),
-      check("telefono").isLength({ min: 8, max: 8 }),
+      check("nombre","Por favor ingrese un nombre válido.").exists().isLength({min:3}),
+      check("email","Por favor ingrese un email válido.").isEmail(),
+      check("telefono","Ingrese un número de teléfono válido").isLength({ min: 8, max: 8 }),
     ],
     auth,
     acceso("Administrador", "Gerente general"),
