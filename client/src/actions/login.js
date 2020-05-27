@@ -39,7 +39,7 @@ export const login = ({ email, contrasena }) => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.data.errores) {
       const errors = e.response.data.errores;
-      errors.forEach((error) => dispatch(setAlert(error.mensaje, "danger")));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: LOGIN_FAIL,

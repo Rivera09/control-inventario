@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/login";
 import setAuthToken from "./utils/setAuthToken";
+import CrearProveedor from './components/proveedores/CrearProveedor';
 
 if (localStorage.getItem("token")) setAuthToken(localStorage.getItem("token"));
 
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/inventario" component={Inventario} />
+            <Route exact path='/proveedores/crearproveedor' component={CrearProveedor}/>
           </Switch>
         </div>
       </Router>

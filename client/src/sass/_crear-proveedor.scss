@@ -1,0 +1,61 @@
+.agregar-proveedor {
+  text-align: center;
+  box-shadow: 10px 10px 8px black;
+  width: 400px;
+  margin: 0 auto;
+  background: #19191999;
+  padding: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  input {
+    border: 2px solid var(--primary-color);
+    background: none;
+    display: block !important;
+    margin: 30px auto;
+    text-align: center;
+    padding: 13px 10px;
+    width: 280px;
+    outline: none;
+    color: var(--font-color);
+    transition: 0.25s;
+    &:first-of-type {
+      margin-top: 40px;
+    }
+    &:focus {
+      border-color: var(--secundary-color);
+    }
+  }
+  button,
+  a {
+    padding: 10px 30px;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+}
+
+
+.input-fields .input,
+.mensaje {
+  margin: 20px 0;
+  background: transparent;
+  padding: 10px;
+  color: #c5ecfd;
+}
+
+
+.form-btns {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.provider-loading{
+  width: 280px;
+  height: 350px;
+  transform: translateX(-50%);
+  margin-left: 50%;
+}

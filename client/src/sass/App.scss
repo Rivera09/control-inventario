@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: var(--background-color);
+  background: url('../img/fondoPantalla.jpg') center center/cover;
   margin: 0;
   color: white;
 }
@@ -27,4 +27,4 @@ body {
 @import './side-bar';
 @import './inventario';
 @import './caja-producto';
-@import './proveedores';
+@import './crear-proveedor';

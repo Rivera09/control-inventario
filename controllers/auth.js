@@ -17,7 +17,7 @@ exports.iniciarSesion = async (req, res) => {
         mensaje: "Credenciales no válidas",
         errores: [
           {
-            mensaje: "Email y/o contaseña incorrectos.",
+            msg: "Email y/o contaseña incorrectos.",
           },
         ],
       });
@@ -28,7 +28,7 @@ exports.iniciarSesion = async (req, res) => {
         mensaje: "Credenciales no válidas",
         errores: [
           {
-            mensaje: "Email y/o contaseña incorrectos.",
+            msg: "Email y/o contaseña incorrectos.",
           },
         ],
       });

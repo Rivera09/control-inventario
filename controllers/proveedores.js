@@ -2,7 +2,6 @@ const Proveedor = require("../modules/Proveedores");
 const { validationResult } = require("express-validator");
 const respuestaError = require("../utils/respuestaError");
 
-
 //@route    POST api/proveedores/
 //@desc     Crear un nuevo proveedor.
 //@access   Private
@@ -14,12 +13,13 @@ exports.crearProveedor = async (req, res) => {
   const { nombre, telefono, email } = req.body;
 
   try {
-    const proveedor = await Proveedor.crearProveedor(nombre, telefono, email);
-    return res.status(201).json({
-      mensaje: "Proveedor creado",
-      id: proveedor.id,
-      nombre: proveedor.nombre,
-    });
+    const { success, msg } = await Proveedor.crearProveedor(
+      nombre,
+      telefono,
+      email
+    );
+    if (success === 1) return res.status(201).json({ msg });
+    return respuestaError(400, "Valores no válidos.", [{ msg }], res);
   } catch (e) {
     console.log(e);
     return res.status(500).send("error de servidor");
