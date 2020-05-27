@@ -34,6 +34,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
   };
   const { nombre, email, telefono } = formData;
   if (!isAuthenticated && isAuthenticated !== null) return <Redirect to="/" />;
+  if (user!==null && user.tipo === "Vendedor") return <Redirect to="/main" />;
   return loading || user === null ? (
     <div className="loading-image page-loading"></div>
   ) : (
@@ -85,7 +86,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
               <button className="br btn green-btn" onClick={crearPoveedor}>
                 Guardar
               </button>
-              <Link to="/" className="br btn blue-btn">
+              <Link to="/main" className="br btn blue-btn">
                 Cancelar
               </Link>
             </div>

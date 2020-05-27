@@ -27,7 +27,7 @@ const Login = ({ login,isAuthenticated }) => {
   if(isAuthenticated){
     if(attempting) setAttempting(false);
     return (
-      <Redirect to="/inventario"/>
+      <Redirect to="/main"/>
     )
   }
 
