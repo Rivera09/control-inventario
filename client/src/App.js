@@ -11,6 +11,7 @@ import store from "./store";
 import { loadUser } from "./actions/login";
 import setAuthToken from "./utils/setAuthToken";
 import CrearProveedor from './components/proveedores/CrearProveedor';
+import crearUsuario from './components/usuarios/CrearUsuario';
 
 if (localStorage.getItem("token")) setAuthToken(localStorage.getItem("token"));
 
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/inventario" component={Inventario} />
             <Route exact path='/proveedores/crearproveedor' component={CrearProveedor}/>
+            <Route exact path='/usuarios/crearusuario' component={crearUsuario}/>
           </Switch>
         </div>
       </Router>
