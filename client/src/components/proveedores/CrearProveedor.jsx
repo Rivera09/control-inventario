@@ -1,12 +1,14 @@
 import React, { useState, Fragment, useEffect } from "react";
 import SideBar from "../layout/SideBar";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { createProvider } from "../../actions/providers";
+import { createProvider } from "../../actions/inserts";
 import PropTypes from "prop-types";
 import setAuthToken from "../../utils/setAuthToken";
+import generateModules from "../../utils/sidebarModules";
 
 const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
+  const isManager = user !== null && user.tipo === "Vendedor" ? false : true;
   useEffect(() => {
     if (localStorage.getItem("token"))
       setAuthToken(localStorage.getItem("token"));
@@ -34,30 +36,20 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
   };
   const { nombre, email, telefono } = formData;
   if (!isAuthenticated && isAuthenticated !== null) return <Redirect to="/" />;
+  if (user !== null && user.tipo === "Vendedor") return <Redirect to="/main" />;
   return loading || user === null ? (
     <div className="loading-image page-loading"></div>
   ) : (
     <div className="side-bar-page">
-      <SideBar
-        nombre={user.nombre}
-        modulos={[
-          { key: 1, nombre: "productos", link: "inventario" },
-          { key: 2, nombre: "ventas", link: "ventas" },
-          { key: 3, nombre: "facturas", link: "facturas" },
-          { key: 4, nombre: "personal", link: "usuarios" },
-          { key: 5, nombre: "reportes", link: "reportes" },
-          { key: 6, nombre: "clientes", link: "clientes" },
-        ]}
-      />
-
-      <form className="agregar-proveedor">
+      <SideBar nombre={user.nombre} modulos={generateModules(isManager, 6)} />
+      <form className="form-box">
         <h1 className="fw-300">Agregar proveedor</h1>
         {!attempting ? (
           <Fragment>
             <input
               type="text"
               name="nombre"
-              className="input br"
+              className="br"
               placeholder="Nombre"
               onChange={typeData}
               autoComplete="off"
@@ -66,7 +58,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
             <input
               value={email}
               type="email"
-              className="input br"
+              className="br"
               placeholder="Correo electrónico"
               name="email"
               onChange={typeData}
@@ -75,7 +67,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
             <input
               type="tel"
               name="telefono"
-              className="input br"
+              className="br"
               placeholder="Teléfono"
               autoComplete="off"
               onChange={typeData}
@@ -85,7 +77,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
               <button className="br btn green-btn" onClick={crearPoveedor}>
                 Guardar
               </button>
-              <Link to="/" className="br btn blue-btn">
+              <Link to="/main" className="br btn blue-btn">
                 Cancelar
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import SideBar from "../layout/SideBar";
 import Productos from "./Productos";
 import axios from "axios";
@@ -7,8 +7,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
+import generateModules from "../../utils/sidebarModules";
 
 const Inventario = ({ isAuthenticated, loading, user }) => {
+  const isManager = user !== null && user.tipo === "Vendedor" ? false : true;
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const [resProducts, setResProducts] = useState([]);
@@ -19,7 +21,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     categoryFilter: "",
     orderFilter: "",
   });
-
   useState(async () => {
     if (localStorage.getItem("token"))
       setAuthToken(localStorage.getItem("token"));
@@ -89,17 +90,7 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     <div className="loading-image page-loading"></div>
   ) : (
     <div className="side-bar-page">
-      <SideBar
-        nombre={user.nombre}
-        modulos={[
-          { key: 1, nombre: "productos", link: "inventario" },
-          { key: 2, nombre: "ventas", link: "ventas" },
-          { key: 3, nombre: "facturas", link: "facturas" },
-          { key: 4, nombre: "personal", link: "usuarios" },
-          { key: 5, nombre: "reportes", link: "reportes" },
-          { key: 6, nombre: "clientes", link: "clientes" },
-        ]}
-      />
+      <SideBar nombre={user.nombre} modulos={generateModules(isManager, 1)} />
       <main className="inventario-main">
         <h1>Inventario</h1>
         <div className="search-container">
@@ -144,8 +135,12 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
             </select>
           </div>
           <div className="products-options">
-            <button className="btn blue-btn br">Agregar producto</button>
-            <button className="btn blue-btn br">Agregar existente</button>
+            {isManager ? (
+              <Fragment>
+                <button className="btn blue-btn br">Agregar producto</button>
+                <button className="btn blue-btn br">Agregar existente</button>
+              </Fragment>
+            ) : null}
           </div>
         </div>
         <Productos productos={currentProducts} />

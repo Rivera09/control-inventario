@@ -8,15 +8,17 @@ const SideBar = ({ nombre, modulos }) => (
       <h3 className="nombre-empleado">{nombre}</h3>
     </div>
     <div className="side-bar-buttons">
-      {modulos.map((modulo) => (
-        <Link
-          key={modulo.key}
-          to={`/${modulo.link}`}
-          className="side-bar-button btn blue-btn br"
-        >
-          {modulo.nombre}
-        </Link>
-      ))}
+      {modulos.map((modulo) =>
+        modulo !== null ? (
+          <Link
+            key={modulo.key}
+            to={modulo.link}
+            className="side-bar-button btn blue-btn br"
+          >
+            {modulo.nombre}
+          </Link>
+        ) : null
+      )}
     </div>
     <p className="date-holder">
       {new Date().toLocaleString("es-mx", {

@@ -13,11 +13,11 @@ router
   .route("/")
   .post(
     [
-      check("email").isEmail(),
-      check("contrasena").isLength({ min: 6 }),
-      check("nombre").exists(),
-      check("telefono").exists(),
-      check("identidad").isLength({ min: 13, max: 13 }),
+      check("email","Ingrese un email válido.").isEmail(),
+      check("contrasena","La contraseña debe tener al menos seis caracteres.").isLength({ min: 6 }),
+      check("nombre","Ingrese un nombre válido.").exists().isLength({min:3}),
+      check("telefono","Ingrese un número de teléfono válido.").exists().isLength({min:8,max:8}),
+      check("identidad","Ingrese una identidad válida.").isLength({ min: 13, max: 13 }),
       check("idTipoUsuario").exists(),
     ],
     auth,

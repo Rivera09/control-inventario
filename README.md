@@ -2,7 +2,7 @@
 
 ## Sobre el proyecto
 Este es un proyecto de la clase de Base de datos 1 de la UNAH.
-En este repositorio se encuentra sólo el código del servidor(backend) hecho con NodeJs y Express.
+En este repositorio se encuentra el código del servidor(backend) hecho con NodeJs y Express y el código del cliente(frontend) hecho con react+redux.
 
 ## Los miembros del grupo somos:
 

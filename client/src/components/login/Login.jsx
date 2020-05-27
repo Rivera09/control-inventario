@@ -27,7 +27,7 @@ const Login = ({ login,isAuthenticated }) => {
   if(isAuthenticated){
     if(attempting) setAttempting(false);
     return (
-      <Redirect to="/inventario"/>
+      <Redirect to="/main"/>
     )
   }
 
@@ -63,7 +63,7 @@ const Login = ({ login,isAuthenticated }) => {
               required
               className="br"
             />
-            <button type="submit" className="btn blue-btn br">
+            <button type="submit" className="btn green-btn br">
               Login
             </button>
           </Fragment>
