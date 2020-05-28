@@ -1,14 +1,14 @@
 import React from "react";
 
 const Paginacion = ({
-  productsPerPage,
-  totalProducts,
+  amountPerPage,
+  total,
   paginate,
   currentPage,
 }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(total / amountPerPage); i++) {
     pageNumbers.push(i);
   }
 

@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize,QueryTypes } = require("sequelize");
 const conexion = require("../config/db");
 
 let Clientes = conexion.define(
@@ -29,10 +29,20 @@ exports.crearCliente = async (nombre, email, balance, rtn) => {
   }
 };
 
-exports.obtenerClientePorRtn=async(rtn)=>{
+exports.obtenerClientePorRtn = async (rtn) => {
   try {
-    return await Clientes.findOne({where:{rtn}});
+    return await Clientes.findOne({ where: { rtn } });
   } catch (e) {
-    throw new Error (e.message);
+    throw new Error(e.message);
   }
-}
+};
+
+exports.obtenerClientes = async () => {
+  try {
+    return await conexion.query("SELECT * FROM Clientes.VIEW_OBTENER_CLIENTES", {
+      type: QueryTypes.SELECT,
+    });
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

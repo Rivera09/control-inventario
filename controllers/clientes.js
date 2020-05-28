@@ -23,8 +23,7 @@ exports.crearCliente = async (req, res) => {
   }
 };
 
-
-//@route    GET api/clientes/
+//@route    GET api/clientes/:rtn
 //@desc     Obtener cliente por rtn.
 //@access   Private
 exports.obtenerClientePorRtn = async (req, res) => {
@@ -45,6 +44,23 @@ exports.obtenerClientePorRtn = async (req, res) => {
       500,
       "Error del servidor",
       [{ msg: "Error al intentar obtener datos del cliente" }],
+      res
+    );
+  }
+};
+
+//@route    GET api/clientes/
+//@desc     Obtener cliente por rtn.
+//@access   Private
+exports.obtenerClientes = async (req, res) => {
+  try {
+    return res.json(await Clientes.obtenerClientes());
+  } catch (e) {
+    console.log(e);
+    return respuestaError(
+      500,
+      "Error del servidor",
+      [{ msg: "Error al intentar obtener los clientes" }],
       res
     );
   }

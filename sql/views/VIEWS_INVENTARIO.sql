@@ -33,3 +33,13 @@ SELECT
 FROM
     Bodega.Categorias as c
     inner join Bodega.Isvs as i on i.id = c.idIsv
+-- Obtener todos los clientes.
+CREATE VIEW Clientes.VIEW_OBTENER_CLIENTES AS
+SELECT
+    idCliente as id,
+    nombre,
+    email,
+    balance as saldo,
+    rtn
+FROM
+    Clientes.Clientes

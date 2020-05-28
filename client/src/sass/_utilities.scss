@@ -113,3 +113,44 @@ select {
   display: flex;
   justify-content: space-around;
 }
+
+table{
+  margin: 20px 0 10px 0;
+  width: 90%;
+  border-spacing: 0;
+  text-align: center;
+  background-color: #19191999;
+  border-radius: 10px;
+}
+
+th{
+  padding: 10px 30px;
+  background-color: var(--primary-color);
+  &:first-of-type{
+    border-top-left-radius: 10px;
+  }
+  &:last-of-type{
+    border-top-right-radius: 10px;
+  }
+}
+
+tr{
+  transition: .25s;
+  td{
+    padding: 10px 30px;
+  }
+  &:hover{
+    background-color: var(--secundary-color);
+  }
+  &:last-of-type{
+    td{
+      &:first-of-type{
+        border-bottom-left-radius: 10px;
+      }
+      &:last-of-type{
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+}
+

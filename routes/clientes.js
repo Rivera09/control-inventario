@@ -3,10 +3,12 @@ const router = express.Router();
 const {
   crearCliente,
   obtenerClientePorRtn,
+  obtenerClientes
 } = require("../controllers/clientes");
 const { check } = require("express-validator");
 const auth = require("../middleware/auth");
-const acceso = require("../middleware/acceso");
+
+router.route('/').get(auth,obtenerClientes);
 
 router
   .route("/")
@@ -18,12 +20,11 @@ router
       check("rtn").isLength({ min: 14, max: 14 }),
     ],
     auth,
-    acceso("Administrador", "Gerente general"),
     crearCliente
   );
 
 router
   .route("/:rtn")
-  .get(auth, acceso("Vendedor", "Administrador"), obtenerClientePorRtn);
+  .get(auth, obtenerClientePorRtn);
 
 module.exports = router;

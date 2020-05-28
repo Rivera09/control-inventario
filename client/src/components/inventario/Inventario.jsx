@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import SideBar from "../layout/SideBar";
 import Productos from "./Productos";
 import axios from "axios";
-import Paginacion from "./Paginacion";
+import Paginacion from "../layout/Paginacion";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
@@ -145,8 +145,8 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
         </div>
         <Productos productos={currentProducts} />
         <Paginacion
-          productsPerPage={productsPerPage}
-          totalProducts={products.length}
+          amountPerPage={productsPerPage}
+          total={products.length}
           paginate={setCurrentPage}
           currentPage={currentPage}
         />
