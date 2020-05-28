@@ -26,6 +26,16 @@ exports.crearProveedor = async (nombre, telefono, email) => {
   }
 };
 
+exports.obtenerProveedores = async () => {
+  try {
+    return await conexion.query("SELECT * FROM Bodega.VIEW_OBTENER_PROVEEDORES", {
+      type: QueryTypes.SELECT,
+    });
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 exports.obtenerProveedorPorEmail = async (email) => {
   try {
     return await Proveedores.findOne({ where: { email } });

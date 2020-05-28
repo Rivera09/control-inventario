@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { crearProveedor } = require("../controllers/proveedores");
+const { crearProveedor,obtenerProveedores } = require("../controllers/proveedores");
 const { check } = require("express-validator");
 const auth = require("../middleware/auth");
 const acceso = require("../middleware/acceso");
@@ -17,5 +17,7 @@ router
     acceso("Administrador", "Gerente general"),
     crearProveedor
   );
+
+router.route('/').get(obtenerProveedores)
 
 module.exports = router;

@@ -25,3 +25,20 @@ exports.crearProveedor = async (req, res) => {
     return res.status(500).send("error de servidor");
   }
 };
+
+//@route    POST api/proveedores/
+//@desc     Crear un nuevo proveedor.
+//@access   Private
+exports.obtenerProveedores = async (req,res)=>{
+  try {
+    return res.json(await Proveedor.obtenerProveedores());
+  } catch (e) {
+    console.log(e);
+    return repuestaError(
+      500,
+      "Error de servidor",
+      [{ msg: "Error al intentar obtener los proveedores." }],
+      res
+    );
+  }
+}

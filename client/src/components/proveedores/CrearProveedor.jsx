@@ -77,7 +77,7 @@ const CrearProveedor = ({ createProvider, isAuthenticated, loading, user }) => {
               <button className="br btn green-btn" onClick={crearPoveedor}>
                 Guardar
               </button>
-              <Link to="/main" className="br btn blue-btn">
+              <Link to="/proveedores" className="br btn blue-btn">
                 Cancelar
               </Link>
             </div>

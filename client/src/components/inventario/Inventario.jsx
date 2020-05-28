@@ -19,7 +19,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
   const [filters, setFilters] = useState({
     nameFilter: "",
     categoryFilter: "",
-    orderFilter: "",
   });
   useState(async () => {
     if (localStorage.getItem("token"))
@@ -62,20 +61,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
           (product) => product.categoria === filters.categoryFilter
         )
       );
-    }
-    switch (filters.orderFilter) {
-      case "Price1":
-        setProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.precio < b.precio ? 1 : -1))
-        );
-        break;
-      case "Price2":
-        setProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.precio < b.precio ? -1 : 1))
-        );
-        break;
-      default:
-        break;
     }
   };
 
@@ -125,13 +110,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
                   {categoria.categoria}
                 </option>
               ))}
-            </select>
-            <select name="orderFilter" className="br" onChange={changeFilters}>
-              <option value="" defaultValue>
-                Ordenar por
-              </option>
-              <option value="Price1">Precio(mayor a menor)</option>
-              <option value="Price2">Precio(menor a mayor)</option>
             </select>
           </div>
           <div className="products-options">

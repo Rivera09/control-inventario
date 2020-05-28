@@ -40,7 +40,7 @@ const Main = ({ isAuthenticated, loading, user,logout }) => {
           key: 6,
           nombre: "Proveedores",
           icono: "fas fa-truck-moving",
-          link: "/proveedores/crearproveedor",
+          link: "/proveedores",
         }
       : null,
   ];
