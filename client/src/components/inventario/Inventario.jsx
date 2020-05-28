@@ -116,7 +116,6 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
             {isManager ? (
               <Fragment>
                 <button className="btn blue-btn br">Agregar producto</button>
-                <button className="btn blue-btn br">Agregar existente</button>
               </Fragment>
             ) : null}
           </div>

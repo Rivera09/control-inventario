@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import setAuthToken from "../../utils/setAuthToken";
+import {Link} from 'react-router-dom';
 
 const Clientes = ({ isAuthenticated, loading, user }) => {
   const isManager = user !== null && user.tipo === "Vendedor" ? false : true;
@@ -52,7 +53,7 @@ const Clientes = ({ isAuthenticated, loading, user }) => {
     <div className="loading-image page-loading"></div>
   ) : (
     <div className="side-bar-page">
-      <SideBar nombre={user.nombre} modulos={generateModules(isManager,4)} />
+      <SideBar nombre={user.nombre} modulos={generateModules(isManager, 4)} />
       <main className="inventario-main">
         <h1>Clientes</h1>
         <div className="search-container">
@@ -74,9 +75,7 @@ const Clientes = ({ isAuthenticated, loading, user }) => {
         </div>
         <div className="search-options">
           <div className="products-options">
-            {isManager ? (
-              <button className="btn blue-btn br">Agregar cliente</button>
-            ) : null}
+            <Link className="btn blue-btn br" to='/clientes/crearcliente'>Agregar cliente</Link>
           </div>
         </div>
         <TablaClientes clientes={currentClient} />

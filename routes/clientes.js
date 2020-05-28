@@ -14,10 +14,10 @@ router
   .route("/")
   .post(
     [
-      check("nombre").exists(),
-      check("email").isEmail(),
-      check("balance").isFloat(),
-      check("rtn").isLength({ min: 14, max: 14 }),
+      check("nombre","Ingrese un nombre válido").exists().isLength({min:3}),
+      check("email","Ingrese un email válido.").isEmail(),
+      check("balance","Ingrese un valor númerico").isFloat(),
+      check("rtn","Ingrese un RTN válido.").isLength({ min: 14, max: 14 }),
     ],
     auth,
     crearCliente

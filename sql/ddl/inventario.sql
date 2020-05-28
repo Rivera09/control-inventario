@@ -78,7 +78,7 @@ CREATE TABLE RecursosHum.Usuarios(
   identidad NVARCHAR (13) UNIQUE
 )
 
-CREATE TABLE facturas.Facturas (
+CREATE TABLE Facturas.Facturas (
    id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
    idUsuario INT NOT NULL FOREIGN KEY REFERENCES RecursosHum.Usuarios(id),
    idCliente INT NOT NULL FOREIGN KEY REFERENCES Clientes.Clientes(idCliente),
@@ -86,4 +86,11 @@ CREATE TABLE facturas.Facturas (
    isv FLOAT,
    total FLOAT,
    fecha DATE,
+)
+
+CREATE TABLE Facturas.detalleFactura(
+id INT NOT NULL PRIMARY KEY,
+idFactura INT FOREIGN KEY REFERENCES Facturas.Facturas(id),
+idProducto INT FOREIGN KEY REFERENCES Bodega.Productos(id),
+cantidad INT
 )

@@ -11,12 +11,19 @@ exports.crearCliente = async (req, res) => {
   if (!errors.isEmpty())
     return respuestaError(400, "Credenciales no válidas", errors.array(), res);
   try {
-    const cliente = await Clientes.crearCliente(nombre, email, balance, rtn);
-    return res.status(201).json({
-      Mensaje: "creado exitosamente",
-      id: cliente.id,
-      nombre: cliente.nombre,
-    });
+    const { success, msg } = await Clientes.crearCliente(
+      nombre,
+      email,
+      balance,
+      rtn
+    );
+    if (success === 1) return res.json({ msg });
+    return respuestaError(
+      400,
+      "Error al intentar crear cliente",
+      [{ msg }],
+      res
+    );
   } catch (e) {
     console.log(e);
     return res.status(500).send("error de servidor");

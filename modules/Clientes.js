@@ -17,13 +17,10 @@ let Clientes = conexion.define(
 
 exports.crearCliente = async (nombre, email, balance, rtn) => {
   try {
-    await conexion.sync();
-    return await Clientes.create({
-      nombre,
-      email,
-      balance,
-      rtn,
-    });
+    const [results] = await conexion.query(
+      `EXECUTE Clientes.SP_CREAR_CLIENTES '${nombre}','${email}',${balance},'${rtn}'`
+    );
+    return results[0];
   } catch (e) {
     throw new Error(e.message);
   }
