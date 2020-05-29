@@ -24,7 +24,7 @@ const auth = require('./routes/auth');
 const tipoUsuario = require('./routes/tipoUsuarios');
 const categorias = require('./routes/categorias');
 
-//
+//endpoints
 app.use('/api/isv',isv);
 app.use('/api/usuarios',usuarios);
 app.use('/api/auth',auth);
