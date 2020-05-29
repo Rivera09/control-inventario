@@ -36,7 +36,7 @@ exports.crearProducto = async (req, res) => {
     precioVenta,
   } = req.body;
   try {
-    const producto = await Productos.crearProducto(
+    const { success, msg } = await Productos.crearProducto(
       nombre,
       cantidad,
       idCategoria,
@@ -45,13 +45,8 @@ exports.crearProducto = async (req, res) => {
       precioCompra,
       precioVenta
     );
-    return res
-      .status(201)
-      .json({
-        Mensaje: "El producto fue creado",
-        id: producto.id,
-        nombre: producto.nombre,
-      });
+    if (success === 1) return res.status(201).json({ msg });
+    return respuestaError(400, "Valores no válidos.", [{ msg }], res);
   } catch (e) {
     console.log(e);
     return respuestaError(

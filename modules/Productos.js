@@ -27,15 +27,10 @@ exports.crearProducto = async (
   precioVenta
 ) => {
   try {
-    return await Productos.create({
-      nombre,
-      cantidad,
-      idCategoria,
-      idProveedor,
-      descripcion,
-      precioCompra,
-      precioVenta,
-    });
+    const [results] = await conexion.query(
+      `EXECUTE Bodega.SP_CREAR_PRODUCTO '${nombre}','${cantidad}',${idCategoria},${idProveedor},'${descripcion}',${precioCompra},${precioVenta}`
+    );
+    return results[0];
   } catch (e) {
     throw new Error(e.message);
   }
@@ -43,12 +38,9 @@ exports.crearProducto = async (
 
 exports.obtenerProductos = async () => {
   try {
-    return await conexion.query(
-      "select * from Bodega.VIEW_OBTENER_PRODUCTOS",
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
+    return await conexion.query("select * from Bodega.VIEW_OBTENER_PRODUCTOS", {
+      type: QueryTypes.SELECT,
+    });
   } catch (e) {
     throw new Error(e.message);
   }

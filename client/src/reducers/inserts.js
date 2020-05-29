@@ -5,6 +5,8 @@ import {
   USER_CREATION_FAILED,
   CLIENT_CREATED,
   CLIENT_CREATION_FAILED,
+  PRODUCT_CREATED,
+  PRODUCT_CREATION_FAILED,
 } from "../actions/types";
 
 const initialState = {
@@ -17,10 +19,12 @@ export default function (state = initialState, action) {
     case PROVIDER_CREATED:
     case USER_CREATED:
     case CLIENT_CREATED:
+    case PRODUCT_CREATED:
       return {
         ...state,
         insertSuccessful: true,
       };
+    case PRODUCT_CREATION_FAILED:
     case CLIENT_CREATION_FAILED:
     case PROVIDER_CREATION_FAILED:
     case USER_CREATION_FAILED:

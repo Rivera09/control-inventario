@@ -5,7 +5,7 @@ import axios from "axios";
 import Paginacion from "../layout/Paginacion";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import setAuthToken from "../../utils/setAuthToken";
 import generateModules from "../../utils/sidebarModules";
 
@@ -115,7 +115,7 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
           <div className="products-options">
             {isManager ? (
               <Fragment>
-                <button className="btn blue-btn br">Agregar producto</button>
+                <Link to="/inventario/crearproducto" className="btn blue-btn br">Agregar producto</Link>
               </Fragment>
             ) : null}
           </div>

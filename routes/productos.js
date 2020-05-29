@@ -13,16 +13,15 @@ const {
 router.route('/').get(auth,obtenerProductos);
 
 router
-  .route("/")
+  .route('/')
   .post(
     [
-      check("nombre").exists(),
-      check("cantidad").exists(),
-      check("idCategoria").exists(),
-      check("idProveedor").exists(),
-      check("descripcion").exists(),
-      check("precioCompra").exists(),
-      check("precioVenta").exists(),
+      check("nombre","Ingrese un nombre válido.").exists(),
+      check("cantidad","Ingrese una cantidad válida.").exists(),
+      check("idCategoria","Ingrese una categoría válida.").isNumeric(),
+      check("idProveedor","Ingrese un proveedore válido.").exists().isNumeric(),
+      check("precioCompra","Ingrese un precio compra válido.").isFloat(),
+      check("precioVenta","Ingrese un precio venta válido.").exists(),
     ],
     auth,
     acceso("Administrador", "Gerente general"),
