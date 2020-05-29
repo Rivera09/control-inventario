@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import SideBar from "../layout/SideBar";
 import Productos from "./Productos";
 import axios from "axios";
@@ -20,7 +20,7 @@ const Inventario = ({ isAuthenticated, loading, user }) => {
     nameFilter: "",
     categoryFilter: "",
   });
-  useState(async () => {
+  useEffect(() => {
     if (localStorage.getItem("token"))
       setAuthToken(localStorage.getItem("token"));
     const getCategories = async () => {
